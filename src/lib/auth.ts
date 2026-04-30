@@ -20,7 +20,10 @@ function getAuth() {
       schema: { user, session, account, verification },
     }),
     emailAndPassword: { enabled: true },
-    trustedOrigins: [process.env.BETTER_AUTH_URL || "http://localhost:3000"],
+    trustedOrigins: [
+      "http://localhost:3000",
+      process.env.BETTER_AUTH_URL,
+    ].filter(Boolean) as string[],
   })
 
   return _instance

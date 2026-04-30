@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Silsilah Keluarga - Living History</title>
+<!-- Google Fonts: Noto Serif & Source Sans 3 -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400..700;1,400..700&amp;family=Source+Sans+3:ital,wght@0,200..900;1,200..900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#31302d",
+                        "tertiary": "#67483f",
+                        "secondary-fixed-dim": "#f1bf63",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#dcdad5",
+                        "outline": "#83746b",
+                        "inverse-primary": "#f4bb92",
+                        "surface-container-low": "#f6f3ee",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#ffdbd0",
+                        "surface-variant": "#e5e2dd",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#8b5e3c",
+                        "on-primary-container": "#ffe3d1",
+                        "surface": "#fcf9f4",
+                        "surface-tint": "#805533",
+                        "surface-container": "#f0ede9",
+                        "tertiary-container": "#816056",
+                        "surface-container-high": "#ebe8e3",
+                        "background": "#fcf9f4",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1c1c19",
+                        "inverse-on-surface": "#f3f0eb",
+                        "secondary-fixed": "#ffdea9",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#301400",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#f4bb92",
+                        "on-secondary-container": "#775300",
+                        "secondary-container": "#fdca6d",
+                        "on-surface-variant": "#51443c",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e5e2dd",
+                        "on-surface": "#1c1c19",
+                        "tertiary-fixed-dim": "#e7bdb1",
+                        "on-tertiary-fixed-variant": "#5d4037",
+                        "surface-bright": "#fcf9f4",
+                        "on-secondary-fixed": "#271900",
+                        "primary": "#6f4627",
+                        "on-secondary-fixed-variant": "#5e4100",
+                        "outline-variant": "#d5c3b8",
+                        "primary-fixed": "#ffdcc5",
+                        "on-tertiary-fixed": "#2c160e",
+                        "on-primary-fixed-variant": "#653d1e",
+                        "secondary": "#7d5800",
+                        "on-tertiary-container": "#ffe1d8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1200px",
+                        "node-gap-h": "32px",
+                        "margin-page": "40px",
+                        "node-gap-v": "64px",
+                        "gutter": "24px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Source Sans 3"],
+                        "h1": ["Noto Serif"],
+                        "body-lg": ["Source Sans 3"],
+                        "body-md": ["Source Sans 3"],
+                        "h3": ["Noto Serif"],
+                        "h2": ["Noto Serif"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["0.875rem", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "h1": ["3.5rem", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["1.125rem", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-md": ["1rem", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h3": ["1.75rem", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "h2": ["2.25rem", {"lineHeight": "1.3", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .parchment-bg {
+            background-color: #FAF7F2;
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.04"/%3E%3C/svg%3E');
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md h-screen flex flex-col overflow-hidden">
+<!-- TopAppBar -->
+<header class="bg-stone-50 dark:bg-stone-950 docked full-width top-0 border-b border-stone-200 dark:border-stone-800 shadow-[0_2px_10px_rgba(62,39,35,0.08)] z-50 shrink-0">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-screen-2xl mx-auto">
+<!-- Brand -->
+<div class="flex items-center gap-2">
+<span class="text-2xl font-bold font-serif text-amber-900 dark:text-amber-50 tracking-tight">Heritage Archives</span>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-8 font-serif text-amber-900 dark:text-amber-50">
+<a class="text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 dark:border-amber-400 pb-1 hover:text-amber-700 dark:hover:text-amber-300 transition-colors duration-300" href="#">Tree Viewer</a>
+<a class="text-stone-600 dark:text-stone-400 hover:text-amber-700 dark:hover:text-amber-300 transition-colors duration-300" href="#">Directory</a>
+<a class="text-stone-600 dark:text-stone-400 hover:text-amber-700 dark:hover:text-amber-300 transition-colors duration-300" href="#">Chronicle</a>
+<a class="text-stone-600 dark:text-stone-400 hover:text-amber-700 dark:hover:text-amber-300 transition-colors duration-300" href="#">Admin</a>
+</nav>
+<!-- Search & Actions -->
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 text-sm">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-full text-sm font-body-md focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container w-64 shadow-[inset_0_2px_4px_rgba(62,39,35,0.04)]" placeholder="Search lineage..." type="text"/>
+</div>
+<button class="text-stone-600 dark:text-stone-400 hover:text-amber-700 dark:hover:text-amber-300 transition-colors duration-300 scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Canvas Area -->
+<main class="flex-1 relative flex overflow-hidden parchment-bg">
+<!-- Interactive Tree Canvas (Left Side) -->
+<div class="flex-1 relative cursor-grab active:cursor-grabbing overflow-hidden">
+<!-- Connection Lines (SVG) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" style="min-width: 1200px; min-height: 800px;">
+<defs>
+<lineargradient id="lineGrad" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#C4963F" stop-opacity="0.8"></stop>
+<stop offset="100%" stop-color="#C4963F" stop-opacity="0.3"></stop>
+</lineargradient>
+</defs>
+<!-- Root to Child 1 -->
+<path class="opacity-80" d="M 600 180 C 600 280, 400 280, 400 380" fill="none" stroke="url(#lineGrad)" stroke-width="3"></path>
+<!-- Root to Child 2 -->
+<path class="opacity-80" d="M 600 180 C 600 280, 800 280, 800 380" fill="none" stroke="url(#lineGrad)" stroke-width="3"></path>
+<!-- Child 1 to Grandchild 1 -->
+<path class="opacity-60" d="M 400 460 C 400 560, 250 560, 250 660" fill="none" stroke="#C4963F" stroke-dasharray="4 4" stroke-width="2"></path>
+<!-- Child 1 to Grandchild 2 -->
+<path class="opacity-80" d="M 400 460 C 400 560, 550 560, 550 660" fill="none" stroke="#C4963F" stroke-width="2"></path>
+</svg>
+<!-- Nodes Layer -->
+<div class="absolute inset-0" style="min-width: 1200px; min-height: 800px;">
+<!-- Root Node (Selected) -->
+<div class="absolute top-[140px] left-[600px] -translate-x-1/2 -translate-y-1/2 flex items-center gap-4 bg-surface rounded-[40px] shadow-[0_8px_24px_rgba(62,39,35,0.12)] border-2 border-[#C4963F] p-2 pr-8 min-w-[280px] cursor-pointer hover:shadow-[0_12px_32px_rgba(62,39,35,0.16)] transition-all z-10 ring-4 ring-[#C4963F]/10">
+<img alt="Portrait" class="w-16 h-16 rounded-full object-cover border-2 border-[#C4963F]" data-alt="vintage sepia portrait of a dignified older man with a mustache in late 19th century attire soft warm lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk_qX-UwcWHeJeeg1qIwZx3iTq6_gk860VGhmvxEwaj5Xdqz8Ly9YurS2v4L_0aprWhx9TLq7qkJ16msIeByGvVghYPAEWE8KCR2SePW76cU14EI87nQalOqO7ulCetbT4PAf82_0Eoos3gtwKiToH4C0BdQTLkMDk1UBqO2cA29VSpUYQLES9YoxyF0h3C3NyPSgdOdveLf82-YpRklxQ7yzVs6WWovr4qCMCYLvYvpobixfo5imNdkF7G21fHqPNHeJPIH_wTGY"/>
+<div class="flex flex-col">
+<span class="font-h3 text-h3 text-on-surface leading-tight text-[1.25rem]">Elias Hawthorne</span>
+<span class="font-label-sm text-label-sm text-outline tracking-widest mt-1 uppercase text-[0.7rem]">1842 — 1912</span>
+</div>
+</div>
+<!-- Child Node 1 -->
+<div class="absolute top-[420px] left-[400px] -translate-x-1/2 -translate-y-1/2 flex items-center gap-4 bg-surface rounded-[40px] shadow-[0_4px_16px_rgba(62,39,35,0.06)] border border-outline-variant p-2 pr-6 min-w-[260px] cursor-pointer hover:shadow-[0_8px_24px_rgba(62,39,35,0.12)] hover:-translate-y-1 transition-all transition-transform">
+<img alt="Portrait" class="w-14 h-14 rounded-full object-cover border border-outline-variant" data-alt="vintage portrait of a young woman with pinned up hair in early 1900s dress soft ethereal lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6iVk_EEu550kAUcBBfTII-N6uA0Eqv2efC8yCr_7k5I-awzET_jbvPUctLCI089DNCTQZ1A9rq455cHkcDf_EaEFcvbDOzPAuwkd9iJHSpCqg7_rwRZVKd8otsAWiIzxCkP7fAmCspWwyxP3ha9mezMb4PjQqSfZ39NTLT_U6gBWaH3UiXZkxnnCnPDy_f8nh961LZtPcHHqE-LOTQ4daJCcBd2qkk8dJKFDd4VtVF-r-1pRNlOYTBJx6rIVpwkDGC_OPT0wRiHQ"/>
+<div class="flex flex-col">
+<span class="font-h3 text-h3 text-on-surface leading-tight text-[1.125rem]">Clara Hawthorne</span>
+<span class="font-label-sm text-label-sm text-outline tracking-widest mt-1 uppercase text-[0.65rem]">1870 — 1945</span>
+</div>
+</div>
+<!-- Child Node 2 -->
+<div class="absolute top-[420px] left-[800px] -translate-x-1/2 -translate-y-1/2 flex items-center gap-4 bg-surface rounded-[40px] shadow-[0_4px_16px_rgba(62,39,35,0.06)] border border-outline-variant p-2 pr-6 min-w-[260px] cursor-pointer hover:shadow-[0_8px_24px_rgba(62,39,35,0.12)] hover:-translate-y-1 transition-all transition-transform opacity-70">
+<div class="w-14 h-14 rounded-full border border-outline-variant bg-surface-container flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-2xl">person</span>
+</div>
+<div class="flex flex-col">
+<span class="font-h3 text-h3 text-on-surface leading-tight text-[1.125rem]">Arthur Hawthorne</span>
+<span class="font-label-sm text-label-sm text-outline tracking-widest mt-1 uppercase text-[0.65rem]">1875 — ?</span>
+</div>
+</div>
+<!-- Grandchild Node 1 -->
+<div class="absolute top-[700px] left-[250px] -translate-x-1/2 -translate-y-1/2 flex items-center gap-4 bg-surface rounded-[40px] shadow-[0_4px_16px_rgba(62,39,35,0.06)] border border-outline-variant p-2 pr-6 min-w-[240px] cursor-pointer hover:shadow-[0_8px_24px_rgba(62,39,35,0.12)] hover:-translate-y-1 transition-all transition-transform">
+<img alt="Portrait" class="w-12 h-12 rounded-full object-cover border border-outline-variant" data-alt="black and white portrait of a man in 1930s suit looking slightly off camera soft grain texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-DKkMvOw43A2zL7l2QyrkOJIp5f7s5M0vMHAG_QW-UMJdI99JE1Df81R-GHl5UlK6kdNdWoWBbKV00JN7YlVjNP2DK03e-SRqxb1p45PtTOYrFx_97BwHQjA3VZuwHYdWVto3V-bYj1TG3JO-7kjjykVCaeJ0XdJhDaMvqHBvMLO6JoSCVXwWYmpSTUYavtqtoWWpwp2ZJiKFOfmP5zs5l_xqdVBDxjjkWigmmw4e1mDbY57bFL9lgU2Fkne0io3wryXZY9mJzTA"/>
+<div class="flex flex-col">
+<span class="font-h3 text-h3 text-on-surface leading-tight text-[1rem]">William Vance</span>
+<span class="font-label-sm text-label-sm text-outline tracking-widest mt-1 uppercase text-[0.6rem]">1898 — 1972</span>
+</div>
+</div>
+<!-- Grandchild Node 2 -->
+<div class="absolute top-[700px] left-[550px] -translate-x-1/2 -translate-y-1/2 flex items-center gap-4 bg-surface rounded-[40px] shadow-[0_4px_16px_rgba(62,39,35,0.06)] border border-outline-variant p-2 pr-6 min-w-[240px] cursor-pointer hover:shadow-[0_8px_24px_rgba(62,39,35,0.12)] hover:-translate-y-1 transition-all transition-transform">
+<img alt="Portrait" class="w-12 h-12 rounded-full object-cover border border-outline-variant" data-alt="vintage tinted portrait of young woman in 1920s cloche hat warm muted colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMG_ljTn3H2nr_RqIOYbQGXd_L13j9kGS63rfvSYjp9RRiyuSP_ZTRKBylTA7gCm9jZu6riB68xv7YVEpXLFOwR8rWyccktx0CaRU4ywIs0gm5OBUmizpVV33gcPDqxgu7T13KWdBPKGC2ppwR5RyxE0Tr6RJSRvj2xjNjXnAK-xEnF-8dZNgN8jqd5J4QbQE8F1WI3bWu-9ukSDSt_sLxVNic0fHIloOjGqlYimkpCDIXvZPmr5upPq_QlRSJ-xHUeLp6kqpSDwo"/>
+<div class="flex flex-col">
+<span class="font-h3 text-h3 text-on-surface leading-tight text-[1rem]">Eleanor Vance</span>
+<span class="font-label-sm text-label-sm text-outline tracking-widest mt-1 uppercase text-[0.6rem]">1902 — 1988</span>
+</div>
+</div>
+</div>
+<!-- Canvas Controls -->
+<div class="absolute bottom-8 left-8 flex flex-col gap-2 z-20">
+<button class="w-10 h-10 rounded-full bg-surface shadow-[0_2px_8px_rgba(62,39,35,0.1)] flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors border border-outline-variant/50" title="Zoom In">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-surface shadow-[0_2px_8px_rgba(62,39,35,0.1)] flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors border border-outline-variant/50" title="Zoom Out">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-surface shadow-[0_2px_8px_rgba(62,39,35,0.1)] flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors border border-outline-variant/50 mt-2" title="Fit to Screen">
+<span class="material-symbols-outlined text-lg">fit_screen</span>
+</button>
+</div>
+</div>
+<!-- Sidebar / Details Panel -->
+<aside class="w-[400px] bg-surface shadow-[-4px_0_24px_rgba(62,39,35,0.08)] border-l border-outline-variant z-30 flex flex-col shrink-0 overflow-y-auto custom-scrollbar">
+<!-- Cover/Header Image Area -->
+<div class="relative h-48 bg-surface-container-high w-full">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-surface opacity-80 z-10"></div>
+<!-- Abstract texture or location placeholder for header -->
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&amp;fit=crop&amp;q=80&amp;w=800')] bg-cover bg-center opacity-30" data-alt="faded antique map texture showing faint contour lines and vintage typography in sepia tones"></div>
+<button class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-surface/80 backdrop-blur flex items-center justify-center text-on-surface hover:bg-surface transition-colors shadow-sm">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<!-- Profile Content -->
+<div class="px-8 -mt-16 relative z-20 pb-12">
+<!-- Large Portrait -->
+<div class="w-32 h-32 rounded-full border-4 border-surface shadow-md overflow-hidden bg-surface-container mb-6">
+<img alt="Elias Hawthorne" class="w-full h-full object-cover" data-alt="vintage sepia portrait of a dignified older man with a mustache in late 19th century attire soft warm lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpBG3jrK5_eI6X5gPki7sEksWeQtH7Wn_fQ1xLiWzOJzNhHjIX6-TwjetmP8l4Rmx7wdIsiXVd7MbCjElLatr0QDiS_3Cq8C6M3JDiDbAOWqNNJUtP8b1vJS1UcjT5yLCQeJkJvZTaLj6-hwbZwQv7ws-JX7eccfWldjLg_TZ2TV9MaExlOolAKK7UOCZzkgaioHs1VobEuV_Qv_MK6rUibh5P79kC0jHedhVLxZeOy-nBLoSAAuwdgFJCqiG-zTGTvHiJoEUfjrE"/>
+</div>
+<div class="mb-8">
+<h2 class="font-h2 text-h2 text-on-surface mb-1">Elias Hawthorne</h2>
+<p class="font-label-sm text-label-sm text-primary-container tracking-wider uppercase mb-4">Patriarch • 1842 — 1912</p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Born in the quiet valleys of Yorkshire, Elias established the family estate that would shelter three generations. A merchant by trade, his meticulous ledgers form the foundation of our archival records.
+                    </p>
+</div>
+<!-- Action Buttons -->
+<div class="flex gap-3 mb-10 border-b border-outline-variant/30 pb-8">
+<button class="flex-1 bg-primary-container text-on-primary-container font-label-sm text-label-sm py-2.5 rounded-lg flex items-center justify-center gap-2 hover:bg-primary-container/90 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+                        View Ledger
+                    </button>
+<button class="flex-1 border border-[#C4963F] text-primary-container font-label-sm text-label-sm py-2.5 rounded-lg flex items-center justify-center gap-2 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">gallery_thumbnail</span>
+                        Gallery
+                    </button>
+</div>
+<!-- Timeline Component -->
+<div>
+<h3 class="font-h3 text-[1.25rem] text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container">history</span>
+                        Life Events
+                    </h3>
+<div class="relative pl-6 border-l-2 border-[#C4963F] space-y-8 pb-4">
+<!-- Event 1 -->
+<div class="relative">
+<div class="absolute -left-[31px] top-1 w-3 h-3 rounded-full bg-primary-container border-2 border-surface shadow-sm"></div>
+<span class="font-label-sm text-label-sm text-outline block mb-1">Mar 12, 1842</span>
+<h4 class="font-body-lg font-bold text-on-surface">Birth</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mt-1">Yorkshire, England</p>
+</div>
+<!-- Event 2 -->
+<div class="relative">
+<div class="absolute -left-[31px] top-1 w-3 h-3 rounded-full bg-primary-container border-2 border-surface shadow-sm"></div>
+<span class="font-label-sm text-label-sm text-outline block mb-1">1868</span>
+<h4 class="font-body-lg font-bold text-on-surface">Established Trading Co.</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mt-1">Began the import business that secured the family's fortune.</p>
+</div>
+<!-- Event 3 -->
+<div class="relative">
+<div class="absolute -left-[31px] top-1 w-3 h-3 rounded-full bg-surface-container border-2 border-outline shadow-sm"></div>
+<span class="font-label-sm text-label-sm text-outline block mb-1">Nov 04, 1912</span>
+<h4 class="font-body-lg font-bold text-on-surface">Passed Away</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mt-1">Hawthorne Manor</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</main>
+</body></html>

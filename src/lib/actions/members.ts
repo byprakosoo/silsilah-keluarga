@@ -24,18 +24,14 @@ export const getAllMembers = async () => {
   return db.select().from(members).where(isNull(members.deletedAt))
 }
 
-export const getMemberBySlug = unstable_cache(
-  async (slug: string) => {
-    const result = await db
-      .select()
-      .from(members)
-      .where(and(eq(members.slug, slug), isNull(members.deletedAt)))
-      .limit(1)
-    return result[0] || null
-  },
-  ["member-by-slug"],
-  { revalidate: 3600, tags: ["members"] }
-)
+export const getMemberBySlug = async (slug: string) => {
+  const result = await db
+    .select()
+    .from(members)
+    .where(and(eq(members.slug, slug), isNull(members.deletedAt)))
+    .limit(1)
+  return result[0] || null
+}
 
 export async function getMemberWithRelations(memberOrId: string | typeof members.$inferSelect): Promise<MemberWithRelations | null> {
   let member: typeof members.$inferSelect | undefined

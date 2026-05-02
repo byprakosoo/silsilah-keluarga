@@ -6,6 +6,7 @@ import { useLayoutedTree } from "@/components/family-tree/use-layouted-tree"
 import { NodeDetailSheet } from "@/components/family-tree/node-detail-sheet"
 import { membersToNodesAndEdges } from "@/lib/tree-utils"
 import { Member, Relationship, MemberWithRelations } from "@/lib/types"
+import { saveNodePosition } from "@/lib/actions/members"
 
 interface FamilyTreeClientProps {
   members: Member[]
@@ -100,12 +101,20 @@ export function FamilyTreeClient({ members, relationships }: FamilyTreeClientPro
     }
   }, [members, relationships])
 
+  const handleNodePositionChange = useCallback(
+    (memberId: string, x: number, y: number) => {
+      saveNodePosition(memberId, x, y)
+    },
+    []
+  )
+
   return (
     <>
       <FamilyTree
         initialNodes={layouted.nodes}
         initialEdges={layouted.edges}
         onNodeClick={handleNodeClick}
+        onNodePositionChange={handleNodePositionChange}
       />
       <NodeDetailSheet
         member={selectedMember}

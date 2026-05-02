@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback } from "react"
+import { useCallback, useState, useEffect } from "react"
 import {
   ReactFlow,
   Background,
@@ -37,7 +37,7 @@ function FamilyMemberNode({ data }: NodeProps<{ member: Member }>) {
     <div className="cursor-pointer transition-transform duration-300 ease-out hover:scale-105">
       <Handle type="target" position={Position.Top} id="top" className="!bg-transparent !border-0" />
       <div
-        className="flex items-center gap-3 px-4 py-3 rounded-[2rem] border shadow-heritage w-[220px] box-border"
+        className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-3 rounded-[2rem] border shadow-heritage w-[170px] sm:w-[220px] box-border"
         style={{
           backgroundColor: isDeceased ? "var(--surface-container)" : "var(--surface-container-lowest)",
           borderColor: isDeceased ? "var(--outline-variant)" : "var(--ledger-line)",
@@ -50,12 +50,12 @@ function FamilyMemberNode({ data }: NodeProps<{ member: Member }>) {
             style={{ borderColor: isDeceased ? "var(--outline-variant)" : "var(--gold-accent)" }}
           />
           <Avatar
-            className="h-11 w-11 border-2 border-transparent rounded-full"
+            className="h-9 w-9 sm:h-11 sm:w-11 border-2 border-transparent rounded-full"
             style={{ filter: isDeceased ? "grayscale(0.5)" : undefined }}
           >
             <AvatarImage src={member.photoUrl || undefined} />
             <AvatarFallback
-              className="text-sm"
+              className="text-xs sm:text-sm"
               style={{
                 backgroundColor: isDeceased ? "var(--surface-container-high)" : "var(--primary-container)",
                 color: isDeceased ? "var(--on-surface-variant)" : "var(--on-primary-container)",
@@ -68,7 +68,7 @@ function FamilyMemberNode({ data }: NodeProps<{ member: Member }>) {
         </div>
         <div className="min-w-0 flex-1">
           <p
-            className="font-serif font-semibold text-[15px] leading-tight truncate"
+            className="font-serif font-semibold text-[13px] sm:text-[15px] leading-tight truncate"
             style={{
               fontFamily: "var(--font-noto-serif), serif",
               color: isDeceased ? "var(--on-surface-variant)" : "var(--on-surface)",
@@ -76,7 +76,7 @@ function FamilyMemberNode({ data }: NodeProps<{ member: Member }>) {
           >
             {member.fullName}
           </p>
-          <p className="text-xs mt-0.5 truncate" style={{ fontFamily: "var(--font-source-sans), sans-serif", color: "var(--on-surface-variant)" }}>
+          <p className="text-[10px] sm:text-xs mt-0.5 truncate" style={{ fontFamily: "var(--font-source-sans), sans-serif", color: "var(--on-surface-variant)" }}>
             {member.gender === "male" ? "♂" : "♀"} {getYearSpan(member)}
           </p>
         </div>
@@ -132,11 +132,20 @@ interface FamilyTreeProps {
   initialNodes: Node[]
   initialEdges: Edge[]
   onNodeClick: (slug: string) => void
+  onNodePositionChange?: (memberId: string, x: number, y: number) => void
 }
 
-export function FamilyTree({ initialNodes, initialEdges, onNodeClick }: FamilyTreeProps) {
+export function FamilyTree({ initialNodes, initialEdges, onNodeClick, onNodePositionChange }: FamilyTreeProps) {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
+  const [isMd, setIsMd] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMd(window.innerWidth >= 768)
+    check()
+    window.addEventListener("resize", check)
+    return () => window.removeEventListener("resize", check)
+  }, [])
 
   const handleNodeClick = useCallback(
     (_event: React.MouseEvent, node: Node) => {
@@ -148,8 +157,19 @@ export function FamilyTree({ initialNodes, initialEdges, onNodeClick }: FamilyTr
     [onNodeClick]
   )
 
+  const handleNodeDragStop = useCallback(
+    (_event: React.MouseEvent, node: Node) => {
+      if (!onNodePositionChange) return
+      const member = node.data?.member as Member | undefined
+      if (member?.id) {
+        onNodePositionChange(member.id, node.position.x, node.position.y)
+      }
+    },
+    [onNodePositionChange]
+  )
+
   return (
-    <div className="w-full h-full rounded-2xl overflow-hidden border border-[var(--ledger-line)]" style={{ backgroundColor: "var(--parchment)" }}>
+    <div className="w-full h-full rounded-xl sm:rounded-2xl overflow-hidden border border-[var(--ledger-line)]" style={{ backgroundColor: "var(--parchment)" }}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -158,27 +178,32 @@ export function FamilyTree({ initialNodes, initialEdges, onNodeClick }: FamilyTr
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
         onNodeClick={handleNodeClick}
+        onNodeDragStop={handleNodeDragStop}
         fitView
-        fitViewOptions={{ padding: 0.4 }}
-        nodesDraggable={false}
+        fitViewOptions={{ padding: isMd ? 0.4 : 0.2 }}
+        nodesDraggable
         nodesConnectable={false}
         elementsSelectable={false}
-        minZoom={0.2}
+        minZoom={0.15}
         maxZoom={2}
         proOptions={{ hideAttribution: true }}
         style={{ backgroundColor: "var(--parchment)" }}
       >
         <Background color="var(--ledger-line)" gap={24} size={1} />
-        <Controls
-          className="!bg-[var(--surface-container-lowest)] !border-[var(--ledger-line)] !rounded-xl !shadow-heritage !overflow-hidden"
-          style={{ borderRadius: "12px" }}
-        />
-        <MiniMap
-          nodeColor={() => "var(--primary-container)"}
-          maskColor="var(--surface-container-low)"
-          className="!bg-[var(--parchment)] !border-[var(--ledger-line)] !rounded-xl !shadow-heritage"
-          style={{ borderRadius: "12px" }}
-        />
+        {isMd && (
+          <>
+            <Controls
+              className="!bg-[var(--surface-container-lowest)] !border-[var(--ledger-line)] !rounded-xl !shadow-heritage !overflow-hidden"
+              style={{ borderRadius: "12px" }}
+            />
+            <MiniMap
+              nodeColor={() => "var(--primary-container)"}
+              maskColor="var(--surface-container-low)"
+              className="!bg-[var(--parchment)] !border-[var(--ledger-line)] !rounded-xl !shadow-heritage"
+              style={{ borderRadius: "12px" }}
+            />
+          </>
+        )}
       </ReactFlow>
     </div>
   )

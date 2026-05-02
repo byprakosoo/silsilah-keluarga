@@ -10,7 +10,7 @@ export default async function DashboardPage() {
 
   return (
     <div>
-      <h1 className="font-serif font-bold text-[var(--on-surface)] mb-2" style={{ fontFamily: "var(--font-noto-serif), serif", fontSize: "2.25rem", lineHeight: "1.3" }}>
+      <h1 className="font-serif font-bold text-[var(--on-surface)] mb-2" style={{ fontFamily: "var(--font-noto-serif), serif", fontSize: "clamp(1.5rem, 5vw, 2.25rem)", lineHeight: "1.3" }}>
         Dashboard
       </h1>
       <p className="body-md text-[var(--on-surface-variant)] mb-8" style={{ fontFamily: "var(--font-source-sans), sans-serif" }}>

@@ -25,13 +25,13 @@ export default async function MemberListPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0 mb-6">
         <div>
           <h1
             className="font-serif font-bold text-[var(--on-surface)]"
             style={{
               fontFamily: "var(--font-noto-serif), serif",
-              fontSize: "2.25rem",
+              fontSize: "clamp(1.5rem, 5vw, 2.25rem)",
               lineHeight: "1.3",
             }}
           >
@@ -41,7 +41,7 @@ export default async function MemberListPage() {
             Kelola data anggota keluarga
           </p>
         </div>
-        <Button asChild className="gap-2" style={{ backgroundColor: "var(--primary)", color: "var(--on-primary)" }}>
+        <Button asChild className="gap-2 w-full sm:w-auto" style={{ backgroundColor: "var(--primary)", color: "var(--on-primary)" }}>
           <Link href="/admin/anggota/baru">
             <Plus className="h-4 w-4" />
             Tambah Anggota

@@ -21,6 +21,8 @@ export const mockMembers: Member[] = [
     createdAt: "2024-01-01T00:00:00Z",
     updatedAt: "2024-01-01T00:00:00Z",
     deletedAt: null,
+    positionX: null,
+    positionY: null,
   },
   {
     id: "2",
@@ -42,6 +44,8 @@ export const mockMembers: Member[] = [
     createdAt: "2024-01-01T00:00:00Z",
     updatedAt: "2024-01-01T00:00:00Z",
     deletedAt: null,
+    positionX: null,
+    positionY: null,
   },
   {
     id: "3",
@@ -63,6 +67,8 @@ export const mockMembers: Member[] = [
     createdAt: "2024-01-01T00:00:00Z",
     updatedAt: "2024-01-01T00:00:00Z",
     deletedAt: null,
+    positionX: null,
+    positionY: null,
   },
   {
     id: "4",
@@ -84,6 +90,8 @@ export const mockMembers: Member[] = [
     createdAt: "2024-01-01T00:00:00Z",
     updatedAt: "2024-01-01T00:00:00Z",
     deletedAt: null,
+    positionX: null,
+    positionY: null,
   },
   {
     id: "5",
@@ -105,6 +113,8 @@ export const mockMembers: Member[] = [
     createdAt: "2024-01-01T00:00:00Z",
     updatedAt: "2024-01-01T00:00:00Z",
     deletedAt: null,
+    positionX: null,
+    positionY: null,
   },
   {
     id: "6",
@@ -126,6 +136,8 @@ export const mockMembers: Member[] = [
     createdAt: "2024-01-01T00:00:00Z",
     updatedAt: "2024-01-01T00:00:00Z",
     deletedAt: null,
+    positionX: null,
+    positionY: null,
   },
   {
     id: "7",
@@ -147,6 +159,8 @@ export const mockMembers: Member[] = [
     createdAt: "2024-01-01T00:00:00Z",
     updatedAt: "2024-01-01T00:00:00Z",
     deletedAt: null,
+    positionX: null,
+    positionY: null,
   },
   {
     id: "8",
@@ -168,6 +182,8 @@ export const mockMembers: Member[] = [
     createdAt: "2024-01-01T00:00:00Z",
     updatedAt: "2024-01-01T00:00:00Z",
     deletedAt: null,
+    positionX: null,
+    positionY: null,
   },
   {
     id: "9",
@@ -189,6 +205,8 @@ export const mockMembers: Member[] = [
     createdAt: "2024-01-01T00:00:00Z",
     updatedAt: "2024-01-01T00:00:00Z",
     deletedAt: null,
+    positionX: null,
+    positionY: null,
   },
   {
     id: "10",
@@ -210,6 +228,8 @@ export const mockMembers: Member[] = [
     createdAt: "2024-01-01T00:00:00Z",
     updatedAt: "2024-01-01T00:00:00Z",
     deletedAt: null,
+    positionX: null,
+    positionY: null,
   },
 ]
 

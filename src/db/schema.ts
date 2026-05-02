@@ -7,6 +7,7 @@ import {
   text,
   timestamp,
   integer,
+  doublePrecision,
   primaryKey,
 } from "drizzle-orm/pg-core"
 
@@ -88,6 +89,8 @@ export const members = pgTable("members", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
   deletedAt: timestamp("deleted_at"),
+  positionX: doublePrecision("position_x"),
+  positionY: doublePrecision("position_y"),
 })
 
 export const relationships = pgTable("relationships", {

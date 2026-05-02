@@ -40,7 +40,7 @@ export default function RootLayout({
       className={`${notoSerif.variable} ${sourceSans3.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-screen flex flex-col bg-background text-on-background">
+      <body className="min-h-screen flex flex-col bg-background text-on-background" suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <TooltipProvider>{children}</TooltipProvider>
         </ThemeProvider>

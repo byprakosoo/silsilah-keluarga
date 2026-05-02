@@ -14,14 +14,14 @@ export default async function HomePage() {
 
   return (
     <div className="h-[calc(100dvh-4rem)] flex flex-col">
-      <div className="max-w-[var(--container-max)] w-full mx-auto px-[var(--gutter)] pt-8 pb-4 shrink-0">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="max-w-[var(--container-max)] w-full mx-auto px-4 sm:px-[var(--gutter)] pt-4 sm:pt-8 pb-2 sm:pb-4 shrink-0">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
           <div>
             <h1
               className="font-serif font-bold text-[var(--on-surface)] mb-1"
               style={{
                 fontFamily: "var(--font-noto-serif), serif",
-                fontSize: "3.5rem",
+                fontSize: "clamp(1.75rem, 5vw, 3.5rem)",
                 lineHeight: "1.2",
                 letterSpacing: "-0.02em",
               }}
@@ -39,7 +39,7 @@ export default async function HomePage() {
         </div>
       </div>
 
-      <div className="flex-1 min-h-0 px-[var(--gutter)] pb-6">
+      <div className="flex-1 min-h-0 px-2 sm:px-[var(--gutter)] pb-2 sm:pb-6">
         <FamilyTreeClient members={members} relationships={relationships} />
       </div>
     </div>

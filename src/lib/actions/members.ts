@@ -201,3 +201,14 @@ export async function deleteMember(id: string) {
   revalidatePath("/admin/anggota")
   revalidateTag("members", "default")
 }
+
+export async function saveNodePosition(memberId: string, x: number, y: number) {
+  await requireAdmin()
+
+  await db
+    .update(members)
+    .set({ positionX: Math.round(x), positionY: Math.round(y), updatedAt: new Date() })
+    .where(eq(members.id, memberId))
+
+  revalidateTag("members", "default")
+}

@@ -15,7 +15,11 @@ import {
 } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
 
-export function AdminSidebar() {
+interface AdminSidebarProps {
+  onNavigate?: () => void
+}
+
+export function AdminSidebar({ onNavigate }: AdminSidebarProps = {}) {
   const pathname = usePathname()
 
   const navItems = [
@@ -31,7 +35,7 @@ export function AdminSidebar() {
 
   return (
     <aside
-      className="flex flex-col w-64 min-h-screen"
+      className="flex flex-col w-64 h-full min-h-screen"
       style={{
         backgroundColor: "var(--surface-tint)",
         color: "var(--inverse-on-surface)",
@@ -68,7 +72,7 @@ export function AdminSidebar() {
               )}
               asChild
             >
-              <Link href={item.href}>
+              <Link href={item.href} onClick={onNavigate}>
                 <Icon className="h-4 w-4" />
                 {item.label}
               </Link>
@@ -85,7 +89,7 @@ export function AdminSidebar() {
           className="w-full justify-start gap-3 text-[var(--inverse-on-surface)] hover:text-[var(--inverse-on-surface)] hover:bg-[var(--primary-container)]/30"
           asChild
         >
-          <Link href="/">
+          <Link href="/" onClick={onNavigate}>
             <ChevronLeft className="h-4 w-4" />
             Kembali ke Situs
           </Link>

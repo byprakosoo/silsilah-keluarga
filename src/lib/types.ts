@@ -18,6 +18,8 @@ export interface Member {
   createdAt: string | Date
   updatedAt: string | Date
   deletedAt: string | Date | null
+  positionX: number | null
+  positionY: number | null
 }
 
 export interface Relationship {

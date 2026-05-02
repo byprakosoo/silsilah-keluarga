@@ -45,7 +45,7 @@ export default function LoginPage() {
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
           <GitBranch className="h-12 w-12 mx-auto mb-4" style={{ color: "var(--primary)" }} />
-          <h1 className="font-serif font-bold" style={{ fontFamily: "var(--font-noto-serif), serif", fontSize: "2.25rem", lineHeight: "1.3", color: "var(--on-surface)" }}>
+          <h1 className="font-serif font-bold" style={{ fontFamily: "var(--font-noto-serif), serif", fontSize: "clamp(1.5rem, 5vw, 2.25rem)", lineHeight: "1.3", color: "var(--on-surface)" }}>
             Admin Login
           </h1>
           <p className="body-md text-[var(--on-surface-variant)] mt-1" style={{ fontFamily: "var(--font-source-sans), sans-serif" }}>

@@ -97,7 +97,7 @@ export function MemberDirectoryClient({ initialMembers }: MemberDirectoryClientP
           placeholder="Cari nama atau keterangan..."
           value={searchQuery}
           onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1) }}
-          className="!h-9 !w-full !max-w-[320px] !rounded-full !border-0 !bg-white/60 !text-sm"
+          className="!h-9 !w-full !max-w-[260px] !rounded-full !border-0 !bg-white/60 !text-sm"
           style={{ fontFamily: "var(--font-source-sans), sans-serif" }}
         />
 
@@ -124,7 +124,7 @@ export function MemberDirectoryClient({ initialMembers }: MemberDirectoryClientP
           Generasi
           <Select value={generationFilter} onValueChange={(v) => { setGenerationFilter(v ?? "all"); setCurrentPage(1) }}>
             <SelectTrigger
-              className="!h-9 !min-w-[150px] rounded-full border-0 bg-white/60 text-sm"
+              className="!h-9 !w-[145px] rounded-full border-0 bg-white/60 text-sm"
               style={{ fontFamily: "var(--font-source-sans), sans-serif" }}
             >
               <SelectValue placeholder="Semua Generasi" />
@@ -150,7 +150,7 @@ export function MemberDirectoryClient({ initialMembers }: MemberDirectoryClientP
           Status
           <Select value={statusFilter} onValueChange={(v) => { setStatusFilter(v ?? "all"); setCurrentPage(1) }}>
             <SelectTrigger
-              className="!h-9 !min-w-[130px] rounded-full border-0 bg-white/60 text-sm"
+              className="!h-9 !w-[130px] rounded-full border-0 bg-white/60 text-sm"
               style={{ fontFamily: "var(--font-source-sans), sans-serif" }}
             >
               <SelectValue placeholder="Status: Semua" />
@@ -164,7 +164,7 @@ export function MemberDirectoryClient({ initialMembers }: MemberDirectoryClientP
         </label>
 
         <span
-          className="ml-auto text-sm"
+          className="ml-auto min-w-[170px] text-right text-sm shrink-0"
           style={{
             fontFamily: "var(--font-source-sans), sans-serif",
             color: "var(--on-surface-variant)",
@@ -178,7 +178,7 @@ export function MemberDirectoryClient({ initialMembers }: MemberDirectoryClientP
       <div className="gold-line mb-8" />
 
       {/* Member Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="w-full max-w-[960px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {paginatedMembers.map((member) => (
           <MemberCard key={member.id} member={member} />
         ))}

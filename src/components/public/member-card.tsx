@@ -1,11 +1,11 @@
-import Link from "next/link"
-import { Card } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Member } from "@/lib/types"
-import { getYearSpan, getGenerationLabel } from "@/lib/tree-utils"
+import Link from "next/link";
+import { Card } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Member } from "@/lib/types";
+import { getYearSpan, getGenerationLabel } from "@/lib/tree-utils";
 
 interface MemberCardProps {
-  member: Member
+  member: Member;
 }
 
 export function MemberCard({ member }: MemberCardProps) {
@@ -13,16 +13,19 @@ export function MemberCard({ member }: MemberCardProps) {
     .split(" ")
     .map((n) => n[0])
     .join("")
-    .slice(0, 2)
+    .slice(0, 2);
 
   const genLabel = getGenerationLabel(member.generation)
     .replace("Generasi ke-", "")
-    .toUpperCase()
-  const genPrefix = genLabel.length <= 5 ? `${genLabel} GEN` : genLabel
+    .toUpperCase();
+  const genPrefix = genLabel.length <= 5 ? `${genLabel} GEN` : genLabel;
 
   return (
     <Link href={`/anggota/${member.slug}`}>
-      <Card className="flex flex-col items-center p-6 hover:shadow-heritage-lg transition-all duration-300 ease-out hover:-translate-y-0.5 cursor-pointer group border-[var(--ledger-line)] bg-[var(--surface-container-lowest)] shadow-heritage">
+      <Card
+        className="flex flex-col items-center p-6 hover:shadow-heritage-lg transition-all duration-300 ease-out hover:-translate-y-0.5 cursor-pointer group border-[var(--ledger-line)] shadow-heritage"
+        style={{ background: "var(--card)" }}
+      >
         <div className="relative mb-4">
           <div
             className="absolute inset-0 rounded-full border-2"
@@ -80,10 +83,8 @@ export function MemberCard({ member }: MemberCardProps) {
           {member.bio || "Belum ada biografi."}
         </p>
 
-        <span className="btn-pill-outline mt-auto">
-          Lihat Silsilah
-        </span>
+        <span className="btn-pill-outline mt-auto">Lihat Silsilah</span>
       </Card>
     </Link>
-  )
+  );
 }

@@ -66,17 +66,17 @@ typography:
     fontWeight: '500'
     lineHeight: '1.4'
   body-lg:
-    fontFamily: Source Sans 3
+    fontFamily: Elms Sans
     fontSize: 1.125rem
     fontWeight: '400'
     lineHeight: '1.6'
   body-md:
-    fontFamily: Source Sans 3
+    fontFamily: Elms Sans
     fontSize: 1rem
     fontWeight: '400'
     lineHeight: '1.6'
   label-sm:
-    fontFamily: Source Sans 3
+    fontFamily: Elms Sans
     fontSize: 0.875rem
     fontWeight: '600'
     lineHeight: '1.2'
@@ -120,7 +120,7 @@ The typography balances the ceremonial with the functional.
 
 **Noto Serif** is the voice of the family. Use it for names, titles, and significant milestones. It provides the "Display" elegance required for a heritage product.
 
-**Source Sans 3** (Humanist Sans) provides clarity for data entry, dates, and descriptions. Its open apertures and organic stroke variations ensure it feels compatible with the serif headings without appearing overly clinical. 
+**Elms Sans** (Humanist Sans) provides clarity for data entry, dates, and descriptions. Its open apertures and organic stroke variations ensure it feels compatible with the serif headings without appearing overly clinical. 
 
 Hierarchy should be established through significant size shifts and the use of the Gold accent color for important labels.
 
@@ -154,7 +154,7 @@ The shape language is dominated by **Ovals and Soft Radii**.
 Primary buttons should be solid Warm Brown (#8B5E3C) with Gold (#C4963F) text or icons. Secondary buttons use a Gold outline with a slight Parchment fill. Avoid high-gloss effects; use a subtle matte gradient to imply volume.
 
 ### Cards (Nodes)
-The central component. A node contains an optional circular portrait frame with a Gold border, the name in Noto Serif, and dates in Source Sans 3. The background should be a slightly lighter shade of the surface color to distinguish it from the canvas.
+The central component. A node contains an optional circular portrait frame with a Gold border, the name in Noto Serif, and dates in Elms Sans. The background should be a slightly lighter shade of the surface color to distinguish it from the canvas.
 
 ### Input Fields
 Inputs should feel like entries in a ledger. Use a bottom-border-only style for a "writing on a line" feel, or a fully enclosed box with a very soft inner shadow and a Cream (#FAF7F2) fill.

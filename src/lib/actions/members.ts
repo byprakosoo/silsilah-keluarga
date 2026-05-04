@@ -2,7 +2,7 @@
 
 import { revalidatePath, revalidateTag, unstable_cache } from "next/cache"
 import { redirect } from "next/navigation"
-import { eq, isNull, and, or, inArray } from "drizzle-orm"
+import { eq, isNull, and, or, inArray, ne } from "drizzle-orm"
 import { db } from "@/db"
 import { members, relationships } from "@/db/schema"
 import { memberSchema, MemberInput } from "@/lib/validations"
@@ -72,15 +72,33 @@ export async function getMemberWithRelations(memberOrId: string | typeof members
 
   const allRelatedIds = [...new Set([...parentIds, ...spouseIds, ...childIds])]
 
+  // Fetch siblings: all members sharing any parent with this member
+  let siblingIds: string[] = []
+  if (parentIds.length > 0) {
+    const siblingRels = await db
+      .select()
+      .from(relationships)
+      .where(
+        and(
+          inArray(relationships.relatedMemberId, parentIds),
+          eq(relationships.relationType, "parent"),
+          ne(relationships.memberId, member.id),
+        ),
+      )
+    siblingIds = [...new Set(siblingRels.map((r) => r.memberId))]
+  }
+
+  const allRelatedIdsFinal = [...new Set([...allRelatedIds, ...siblingIds])]
+
   let relatedMembers: typeof members.$inferSelect[] = []
-  if (allRelatedIds.length > 0) {
+  if (allRelatedIdsFinal.length > 0) {
     relatedMembers = await db
       .select()
       .from(members)
       .where(
         and(
           isNull(members.deletedAt),
-          inArray(members.id, allRelatedIds),
+          inArray(members.id, allRelatedIdsFinal),
         ),
       )
   }
@@ -90,6 +108,7 @@ export async function getMemberWithRelations(memberOrId: string | typeof members
     parents: relatedMembers.filter((m) => parentIds.includes(m.id)),
     spouses: relatedMembers.filter((m) => spouseIds.includes(m.id)),
     children: relatedMembers.filter((m) => childIds.includes(m.id)),
+    siblings: relatedMembers.filter((m) => siblingIds.includes(m.id)),
   }
 }
 

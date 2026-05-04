@@ -12,9 +12,10 @@ import {
   SheetTitle,
   SheetFooter,
 } from "@/components/ui/sheet"
-import { ArrowRight, MapPin, Briefcase, Heart, Calendar, Users } from "lucide-react"
+import { ArrowRight, MapPin, Briefcase, Moon, Calendar, Users } from "lucide-react"
 import { MemberWithRelations } from "@/lib/types"
 import { formatDate, getYearSpan, getGenerationLabel } from "@/lib/tree-utils"
+import { cn } from "@/lib/utils"
 
 interface NodeDetailSheetProps {
   member: MemberWithRelations | null
@@ -67,7 +68,7 @@ export function NodeDetailSheet({ member, open, onOpenChange, spouseMarriageDate
             {member.nickname && (
               <p
                 className="text-sm text-[var(--on-surface-variant)] mt-0.5"
-                style={{ fontFamily: "var(--font-source-sans), sans-serif" }}
+                style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}
               >
                 &ldquo;{member.nickname}&rdquo;
               </p>
@@ -91,14 +92,14 @@ export function NodeDetailSheet({ member, open, onOpenChange, spouseMarriageDate
 
         <div className="flex-1 overflow-auto px-4 space-y-5">
           {/* Dates + Place */}
-          <div className="space-y-2" style={{ fontFamily: "var(--font-source-sans), sans-serif" }}>
+          <div className="space-y-2" style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}>
             <InfoRow icon={Calendar} label="Lahir" value={member.birthDate ? formatDate(member.birthDate) : "-"} />
             {member.birthPlace && <InfoRow icon={MapPin} label="Tempat Lahir" value={member.birthPlace} />}
             {member.deathDate && <InfoRow icon={Calendar} label="Wafat" value={formatDate(member.deathDate)} />}
             {member.deathPlace && <InfoRow icon={MapPin} label="Tempat Wafat" value={member.deathPlace} />}
-            {member.religion && <InfoRow icon={Heart} label="Agama" value={member.religion} />}
+            {member.religion && <InfoRow icon={Moon} label="Agama" value={member.religion} />}
             {member.occupation && <InfoRow icon={Briefcase} label="Pekerjaan" value={member.occupation} />}
-            {member.address && <InfoRow icon={MapPin} label="Alamat" value={member.address} />}
+            {member.address && <InfoRow icon={MapPin} label="Alamat" value={member.address} noTruncate />}
           </div>
 
           <div className="gold-line" />
@@ -121,13 +122,13 @@ export function NodeDetailSheet({ member, open, onOpenChange, spouseMarriageDate
               <div>
                 <p
                   className="label-sm text-[var(--on-surface-variant)] mb-1"
-                  style={{ fontFamily: "var(--font-source-sans), sans-serif" }}
+                  style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}
                 >
                   Biografi
                 </p>
                 <p
                   className="body-md text-[var(--on-surface-variant)] leading-relaxed text-sm"
-                  style={{ fontFamily: "var(--font-source-sans), sans-serif" }}
+                  style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}
                 >
                   {member.bio.slice(0, 200)}
                   {member.bio.length > 200 ? "..." : ""}
@@ -141,7 +142,7 @@ export function NodeDetailSheet({ member, open, onOpenChange, spouseMarriageDate
             <div>
               <p
                 className="label-sm text-[var(--on-surface-variant)] mb-2"
-                style={{ fontFamily: "var(--font-source-sans), sans-serif" }}
+                style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}
               >
                 Orang Tua
               </p>
@@ -153,12 +154,29 @@ export function NodeDetailSheet({ member, open, onOpenChange, spouseMarriageDate
             </div>
           )}
 
+          {/* Siblings */}
+          {member.siblings.length > 0 && (
+            <div>
+              <p
+                className="label-sm text-[var(--on-surface-variant)] mb-2"
+                style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}
+              >
+                Saudara
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {member.siblings.map((sib) => (
+                  <MiniRelation key={sib.id} member={sib} />
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Spouses */}
           {member.spouses.length > 0 && (
             <div>
               <p
                 className="label-sm text-[var(--on-surface-variant)] mb-2"
-                style={{ fontFamily: "var(--font-source-sans), sans-serif" }}
+                style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}
               >
                 Pasangan
               </p>
@@ -167,7 +185,7 @@ export function NodeDetailSheet({ member, open, onOpenChange, spouseMarriageDate
                   <div key={s.id} className="space-y-1">
                     <MiniRelation member={s} />
                     {spouseMarriageDates?.[s.id] && (
-                      <p className="text-xs text-[var(--on-surface-variant)] ml-1" style={{ fontFamily: "var(--font-source-sans), sans-serif" }}>
+                      <p className="text-xs text-[var(--on-surface-variant)] ml-1" style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}>
                         Menikah: {formatDate(spouseMarriageDates[s.id]!)}
                       </p>
                     )}
@@ -182,7 +200,7 @@ export function NodeDetailSheet({ member, open, onOpenChange, spouseMarriageDate
             <div>
               <p
                 className="label-sm text-[var(--on-surface-variant)] mb-2"
-                style={{ fontFamily: "var(--font-source-sans), sans-serif" }}
+                style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}
               >
                 Anak
               </p>
@@ -226,16 +244,18 @@ function InfoRow({
   icon: Icon,
   label,
   value,
+  noTruncate,
 }: {
   icon: React.ComponentType<{ className?: string }>
   label: string
   value: string
+  noTruncate?: boolean
 }) {
   return (
     <div className="flex items-center gap-2 text-sm">
       <Icon className="h-3.5 w-3.5 text-[var(--on-surface-variant)] shrink-0" />
       <span className="text-[var(--on-surface-variant)] w-20 shrink-0">{label}</span>
-      <span className="text-[var(--on-surface)] font-medium truncate">{value}</span>
+      <span className={cn("text-[var(--on-surface)] font-medium", !noTruncate && "truncate")}>{value}</span>
     </div>
   )
 }
@@ -251,7 +271,7 @@ function MiniRelation({ member }: { member: { slug: string; fullName: string; ph
     <Link
       href={`/anggota/${member.slug}`}
       className="flex items-center gap-1.5 px-2 py-1 rounded-lg border border-[var(--outline-variant)] bg-[var(--surface-container-low)] hover:bg-[var(--surface-container)] transition-colors text-xs"
-      style={{ fontFamily: "var(--font-source-sans), sans-serif" }}
+      style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}
     >
       <Avatar className="h-5 w-5 rounded-full">
         <AvatarImage src={member.photoUrl || undefined} />

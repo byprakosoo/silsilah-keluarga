@@ -30,7 +30,7 @@ export default async function HomePage() {
             </h1>
             <p
               className="body-lg text-[var(--on-surface-variant)]"
-              style={{ fontFamily: "var(--font-source-sans), sans-serif" }}
+              style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}
             >
               Geser dan zoom untuk melihat silsilah keluarga secara lengkap
             </p>

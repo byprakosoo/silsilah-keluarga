@@ -6,7 +6,7 @@
 
 @theme inline {
     --font-sans:
-        var(--font-source-sans), "Source Sans 3", ui-sans-serif, system-ui,
+        var(--font-elms-sans), ui-sans-serif, system-ui,
         sans-serif;
     --font-serif: var(--font-noto-serif), "Noto Serif", Georgia, serif;
     --font-heading: var(--font-serif);
@@ -58,6 +58,9 @@
 /* ── CSS Custom Properties ── */
 
 :root {
+    /* Fonts */
+    --font-elms-sans: "Elms Sans", ui-sans-serif, system-ui, sans-serif;
+
     /* Surface hierarchy */
     --surface: #fcf9f4;
     --surface-dim: #dcdad5;
@@ -326,7 +329,7 @@
 
     .body-lg {
         font-family:
-            var(--font-source-sans), "Source Sans 3", ui-sans-serif, system-ui,
+            var(--font-elms-sans), "Elms Sans", ui-sans-serif, system-ui,
             sans-serif;
         font-size: 1.125rem;
         font-weight: 400;
@@ -335,7 +338,7 @@
 
     .body-md {
         font-family:
-            var(--font-source-sans), "Source Sans 3", ui-sans-serif, system-ui,
+            var(--font-elms-sans), "Elms Sans", ui-sans-serif, system-ui,
             sans-serif;
         font-size: 1rem;
         font-weight: 400;
@@ -344,7 +347,7 @@
 
     .label-sm {
         font-family:
-            var(--font-source-sans), "Source Sans 3", ui-sans-serif, system-ui,
+            var(--font-elms-sans), "Elms Sans", ui-sans-serif, system-ui,
             sans-serif;
         font-size: 0.875rem;
         font-weight: 600;
@@ -363,7 +366,7 @@
         border-radius: 0;
         padding: 8px 4px;
         font-family:
-            var(--font-source-sans), "Source Sans 3", ui-sans-serif, system-ui,
+            var(--font-elms-sans), "Elms Sans", ui-sans-serif, system-ui,
             sans-serif;
         font-size: 1rem;
         color: var(--on-surface);
@@ -469,7 +472,7 @@
         border-radius: 9999px;
         padding: 2px 12px;
         font-family:
-            var(--font-source-sans), "Source Sans 3", ui-sans-serif, system-ui,
+            var(--font-elms-sans), "Elms Sans", ui-sans-serif, system-ui,
             sans-serif;
         font-size: 0.75rem;
         font-weight: 600;
@@ -491,7 +494,7 @@
         background: transparent;
         color: var(--gold-accent);
         font-family:
-            var(--font-source-sans), "Source Sans 3", ui-sans-serif, system-ui,
+            var(--font-elms-sans), "Elms Sans", ui-sans-serif, system-ui,
             sans-serif;
         font-size: 0.875rem;
         font-weight: 600;

@@ -48,7 +48,7 @@ export default function LoginPage() {
           <h1 className="font-serif font-bold" style={{ fontFamily: "var(--font-noto-serif), serif", fontSize: "clamp(1.5rem, 5vw, 2.25rem)", lineHeight: "1.3", color: "var(--on-surface)" }}>
             Admin Login
           </h1>
-          <p className="body-md text-[var(--on-surface-variant)] mt-1" style={{ fontFamily: "var(--font-source-sans), sans-serif" }}>
+          <p className="body-md text-[var(--on-surface-variant)] mt-1" style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}>
             Masuk untuk mengelola silsilah keluarga
           </p>
         </div>
@@ -62,11 +62,11 @@ export default function LoginPage() {
             )}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email" style={{ fontFamily: "var(--font-source-sans), sans-serif", color: "var(--on-surface)" }}>Email</Label>
+                <Label htmlFor="email" style={{ fontFamily: "var(--font-elms-sans), sans-serif", color: "var(--on-surface)" }}>Email</Label>
                 <Input id="email" type="email" placeholder="admin@keluarga.id" value={email} onChange={(e) => setEmail(e.target.value)} className="border-[var(--outline-variant)] bg-[var(--surface)] focus-visible:ring-[var(--primary)] shadow-heritage" required />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="password" style={{ fontFamily: "var(--font-source-sans), sans-serif", color: "var(--on-surface)" }}>Password</Label>
+                <Label htmlFor="password" style={{ fontFamily: "var(--font-elms-sans), sans-serif", color: "var(--on-surface)" }}>Password</Label>
                 <Input id="password" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} className="border-[var(--outline-variant)] bg-[var(--surface)] focus-visible:ring-[var(--primary)] shadow-heritage" required />
               </div>
               <Button type="submit" disabled={loading} className="w-full" style={{ backgroundColor: "var(--primary)", color: "var(--on-primary)" }}>
@@ -77,7 +77,7 @@ export default function LoginPage() {
         </Card>
 
         <div className="text-center mt-4">
-          <Link href="/" className="text-sm text-[var(--on-surface-variant)] hover:text-[var(--primary)] underline" style={{ fontFamily: "var(--font-source-sans), sans-serif" }}>
+          <Link href="/" className="text-sm text-[var(--on-surface-variant)] hover:text-[var(--primary)] underline" style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}>
             ← Kembali ke beranda
           </Link>
         </div>

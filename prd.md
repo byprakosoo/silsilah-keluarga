@@ -364,7 +364,7 @@ export const relationships = pgTable('relationships', {
 **Visual Language:**
 - Tone: **Hangat, elegan, organik** — bukan corporate/tech. Bayangkan buku keluarga heritage.
 - Primary color: Coklat hangat / emas (`#8B5E3C`, `#C4963F`) dengan background krem (`#FAF7F2`)
-- Typography: Display font serif (misal: **Playfair Display**) untuk nama; body font humanist sans (misal: **Lato** atau **Source Sans 3**)
+- Typography: Display font serif (misal: **Playfair Display**) untuk nama; body font humanist sans (misal: **Lato** atau **Elms Sans**)
 - Node pada React Flow: kartu oval/rounded dengan foto, nama, tahun — bukan box generik
 - Koneksi: garis organik/curved, bukan garis lurus kaku
 

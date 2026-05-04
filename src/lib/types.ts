@@ -35,6 +35,7 @@ export interface MemberWithRelations extends Member {
   parents: Member[]
   spouses: Member[]
   children: Member[]
+  siblings: Member[]
   birthOrder?: number
   totalSiblings?: number
 }

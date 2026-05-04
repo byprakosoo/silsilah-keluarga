@@ -1,8 +1,9 @@
-import { notFound } from "next/navigation"
-import Link from "next/link"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 import {
   ArrowLeft,
   MapPin,
@@ -12,27 +13,31 @@ import {
   Hourglass,
   BookOpen,
   TrendingUp,
-} from "lucide-react"
-import { getMemberBySlugWithRelations } from "@/lib/actions/members"
-import { formatDate, getYearSpan, getGenerationLabel } from "@/lib/tree-utils"
-import { MemberWithRelations } from "@/lib/types"
+  Moon,
+} from "lucide-react";
+import { getMemberBySlugWithRelations } from "@/lib/actions/members";
+import { formatDate, getYearSpan, getGenerationLabel } from "@/lib/tree-utils";
+import { MemberWithRelations } from "@/lib/types";
 
 interface ProfilePageProps {
-  params: Promise<{ slug: string }>
+  params: Promise<{ slug: string }>;
 }
 
-export const revalidate = 3600
+export const revalidate = 3600;
 
-function calculateAge(birthDateStr: string, deathDateStr: string): number | null {
-  const birth = new Date(birthDateStr)
-  const death = new Date(deathDateStr)
-  if (isNaN(birth.getTime()) || isNaN(death.getTime())) return null
-  let age = death.getFullYear() - birth.getFullYear()
-  const m = death.getMonth() - birth.getMonth()
+function calculateAge(
+  birthDateStr: string,
+  deathDateStr: string,
+): number | null {
+  const birth = new Date(birthDateStr);
+  const death = new Date(deathDateStr);
+  if (isNaN(birth.getTime()) || isNaN(death.getTime())) return null;
+  let age = death.getFullYear() - birth.getFullYear();
+  const m = death.getMonth() - birth.getMonth();
   if (m < 0 || (m === 0 && death.getDate() < birth.getDate())) {
-    age--
+    age--;
   }
-  return age
+  return age;
 }
 
 function getInitials(name: string): string {
@@ -40,32 +45,33 @@ function getInitials(name: string): string {
     .split(" ")
     .map((n) => n[0])
     .join("")
-    .slice(0, 2)
+    .slice(0, 2);
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  const { slug } = await params
-  const member = await getMemberBySlugWithRelations(slug)
+  const { slug } = await params;
+  const member = await getMemberBySlugWithRelations(slug);
 
   if (!member) {
-    notFound()
+    notFound();
   }
 
-  const initials = getInitials(member.fullName)
+  const initials = getInitials(member.fullName);
 
   const generationBadge = (() => {
-    const label = getGenerationLabel(member.generation)
-    const short = label.length <= 8 ? label : `Gen ${member.generation}`
-    return short.toUpperCase()
-  })()
+    const label = getGenerationLabel(member.generation);
+    const short = label.length <= 8 ? label : `Gen ${member.generation}`;
+    return short.toUpperCase();
+  })();
 
-  const age = member.birthDate && member.deathDate
-    ? calculateAge(member.birthDate, member.deathDate)
-    : null
+  const age =
+    member.birthDate && member.deathDate
+      ? calculateAge(member.birthDate, member.deathDate)
+      : null;
 
   const bioParagraphs = member.bio
     ? member.bio.split("\n").filter((p) => p.trim())
-    : []
+    : [];
 
   return (
     <div
@@ -77,7 +83,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
         href="/anggota"
         className="inline-flex items-center gap-1.5 text-sm mb-4 sm:mb-6 hover:underline"
         style={{
-          fontFamily: "var(--font-source-sans), sans-serif",
+          fontFamily: "var(--font-elms-sans), sans-serif",
           color: "var(--on-surface-variant)",
         }}
       >
@@ -124,7 +130,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 borderColor: "var(--gold-accent)",
                 backgroundColor: "transparent",
                 color: "var(--ink)",
-                fontFamily: "var(--font-source-sans), sans-serif",
+                fontFamily: "var(--font-elms-sans), sans-serif",
                 fontWeight: 600,
                 fontSize: "0.75rem",
               }}
@@ -200,7 +206,8 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                   {formatDate(member.deathDate)}
                   {age !== null && (
                     <span style={{ color: "var(--on-surface-variant)" }}>
-                      {" "}(Usia {age})
+                      {" "}
+                      (Usia {age})
                     </span>
                   )}
                 </LedgerRow>
@@ -229,14 +236,14 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
               {/* Religion */}
               {member.religion && (
-                <LedgerRow icon={Heart} label="Agama">
+                <LedgerRow icon={Moon} label="Agama">
                   {member.religion}
                 </LedgerRow>
               )}
 
               {/* Address */}
               {member.address && (
-                <LedgerRow icon={MapPin} label="Alamat">
+                <LedgerRow icon={MapPin} label="Alamat" noTruncate>
                   {member.address}
                 </LedgerRow>
               )}
@@ -272,7 +279,11 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               {bioParagraphs.map((paragraph, idx) => (
                 <p
                   key={idx}
-                  className={idx === 0 ? "first-letter:text-5xl first-letter:font-bold first-letter:float-left first-letter:mr-2 first-letter:leading-[0.85] first-letter:pt-0.5" : ""}
+                  className={
+                    idx === 0
+                      ? "first-letter:text-5xl first-letter:font-bold first-letter:float-left first-letter:mr-2 first-letter:leading-[0.85] first-letter:pt-0.5"
+                      : ""
+                  }
                   style={{
                     ...(idx === 0 && { ["--ink" as string]: "var(--ink)" }),
                     color: "#4A3F35",
@@ -286,12 +297,14 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
             <div
               className="text-center py-16 border border-dashed border-[var(--outline-variant)] rounded-lg"
               style={{
-                fontFamily: "var(--font-source-sans), sans-serif",
+                fontFamily: "var(--font-elms-sans), sans-serif",
                 color: "var(--on-surface-variant)",
               }}
             >
               <p className="text-lg">Belum ada biografi.</p>
-              <p className="text-sm mt-1">Data akan ditambahkan oleh pengurus arsip.</p>
+              <p className="text-sm mt-1">
+                Data akan ditambahkan oleh pengurus arsip.
+              </p>
             </div>
           )}
         </main>
@@ -299,6 +312,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
       {/* ==================== KINSHIP SECTION ==================== */}
       {(member.parents.length > 0 ||
+        member.siblings.length > 0 ||
         member.spouses.length > 0 ||
         member.children.length > 0) && (
         <section className="mb-12 sm:mb-16">
@@ -323,7 +337,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               <h3
                 className="text-xs font-bold tracking-wider mb-4"
                 style={{
-                  fontFamily: "var(--font-source-sans), sans-serif",
+                  fontFamily: "var(--font-elms-sans), sans-serif",
                   color: "var(--ink)",
                 }}
               >
@@ -337,13 +351,33 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
             </div>
           )}
 
+          {/* Siblings */}
+          {member.siblings.length > 0 && (
+            <div className="mb-8">
+              <h3
+                className="text-xs font-bold tracking-wider mb-4"
+                style={{
+                  fontFamily: "var(--font-elms-sans), sans-serif",
+                  color: "var(--ink)",
+                }}
+              >
+                | SAUDARA
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {member.siblings.map((sibling) => (
+                  <KinshipCard key={sibling.id} member={sibling} />
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Spouses */}
           {member.spouses.length > 0 && (
             <div className="mb-8">
               <h3
                 className="text-xs font-bold tracking-wider mb-4"
                 style={{
-                  fontFamily: "var(--font-source-sans), sans-serif",
+                  fontFamily: "var(--font-elms-sans), sans-serif",
                   color: "var(--ink)",
                 }}
               >
@@ -363,7 +397,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               <h3
                 className="text-xs font-bold tracking-wider mb-4"
                 style={{
-                  fontFamily: "var(--font-source-sans), sans-serif",
+                  fontFamily: "var(--font-elms-sans), sans-serif",
                   color: "var(--ink)",
                 }}
               >
@@ -372,9 +406,12 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[...member.children]
                   .sort((a, b) => {
-                    if (!a.birthDate) return 1
-                    if (!b.birthDate) return -1
-                    return new Date(a.birthDate).getTime() - new Date(b.birthDate).getTime()
+                    if (!a.birthDate) return 1;
+                    if (!b.birthDate) return -1;
+                    return (
+                      new Date(a.birthDate).getTime() -
+                      new Date(b.birthDate).getTime()
+                    );
                   })
                   .map((child) => (
                     <KinshipCard key={child.id} member={child} />
@@ -385,7 +422,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
         </section>
       )}
     </div>
-  )
+  );
 }
 
 /* ─────────── Sub-components ─────────── */
@@ -394,33 +431,45 @@ function LedgerRow({
   icon: Icon,
   label,
   children,
+  noTruncate,
 }: {
-  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>
-  label: string
-  children: React.ReactNode
+  icon: React.ComponentType<{
+    className?: string;
+    style?: React.CSSProperties;
+  }>;
+  label: string;
+  children: React.ReactNode;
+  noTruncate?: boolean;
 }) {
   return (
     <div
       className="flex items-center gap-3 py-3 border-b border-[var(--ledger-line)] last:border-b-0"
-      style={{ fontFamily: "var(--font-source-sans), sans-serif" }}
+      style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}
     >
-      <Icon className="h-4 w-4 shrink-0" style={{ color: "var(--on-surface-variant)" }} />
+      <Icon
+        className="h-4 w-4 shrink-0"
+        style={{ color: "var(--on-surface-variant)" }}
+      />
       <span
         className="text-xs font-semibold uppercase tracking-wider shrink-0 w-28"
         style={{ color: "var(--ink)", opacity: 0.7 }}
       >
         {label}
       </span>
-      <span className="text-sm text-[var(--on-surface)] font-medium truncate ml-auto text-right">
+      <span className={cn("text-sm text-[var(--on-surface)] font-medium ml-auto text-right", !noTruncate && "truncate")}>
         {children}
       </span>
     </div>
-  )
+  );
 }
 
-function KinshipCard({ member }: { member: MemberWithRelations["parents"][number] }) {
-  const initials = getInitials(member.fullName)
-  const yearSpan = getYearSpan(member)
+function KinshipCard({
+  member,
+}: {
+  member: MemberWithRelations["parents"][number];
+}) {
+  const initials = getInitials(member.fullName);
+  const yearSpan = getYearSpan(member);
 
   return (
     <Link href={`/anggota/${member.slug}`}>
@@ -463,7 +512,7 @@ function KinshipCard({ member }: { member: MemberWithRelations["parents"][number
             <p
               className="text-sm mt-0.5"
               style={{
-                fontFamily: "var(--font-source-sans), sans-serif",
+                fontFamily: "var(--font-elms-sans), sans-serif",
                 color: "var(--on-surface-variant)",
               }}
             >
@@ -471,8 +520,7 @@ function KinshipCard({ member }: { member: MemberWithRelations["parents"][number
             </p>
           )}
         </div>
-
       </Card>
     </Link>
-  )
+  );
 }

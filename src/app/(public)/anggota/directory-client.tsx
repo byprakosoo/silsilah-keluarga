@@ -79,7 +79,7 @@ export function MemberDirectoryClient({ initialMembers }: MemberDirectoryClientP
         </h1>
         <div
           className="space-y-1 body-lg"
-          style={{ fontFamily: "var(--font-source-sans), sans-serif", color: "#555555" }}
+          style={{ fontFamily: "var(--font-elms-sans), sans-serif", color: "#555555" }}
         >
           <p>
             Jelajahi keturunan dan leluhur yang terdokumentasi dalam Silsilah Keluarga.
@@ -98,7 +98,7 @@ export function MemberDirectoryClient({ initialMembers }: MemberDirectoryClientP
           value={searchQuery}
           onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1) }}
           className="!h-9 !w-full !max-w-[260px] !rounded-full !border-0 !bg-white/60 !text-sm"
-          style={{ fontFamily: "var(--font-source-sans), sans-serif" }}
+          style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}
         />
 
         <span className="w-px h-6 bg-[var(--border-light)] shrink-0" />
@@ -107,7 +107,7 @@ export function MemberDirectoryClient({ initialMembers }: MemberDirectoryClientP
         <span
           className="text-xs font-bold tracking-wider mr-2 shrink-0"
           style={{
-            fontFamily: "var(--font-source-sans), sans-serif",
+            fontFamily: "var(--font-elms-sans), sans-serif",
             color: "var(--on-surface)",
           }}
         >
@@ -117,7 +117,7 @@ export function MemberDirectoryClient({ initialMembers }: MemberDirectoryClientP
         <label
           className="flex items-center gap-2 text-xs font-medium shrink-0"
           style={{
-            fontFamily: "var(--font-source-sans), sans-serif",
+            fontFamily: "var(--font-elms-sans), sans-serif",
             color: "var(--on-surface)",
           }}
         >
@@ -125,7 +125,7 @@ export function MemberDirectoryClient({ initialMembers }: MemberDirectoryClientP
           <Select value={generationFilter} onValueChange={(v) => { setGenerationFilter(v ?? "all"); setCurrentPage(1) }}>
             <SelectTrigger
               className="!h-9 !w-[145px] rounded-full border-0 bg-white/60 text-sm"
-              style={{ fontFamily: "var(--font-source-sans), sans-serif" }}
+              style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}
             >
               <SelectValue placeholder="Semua Generasi" />
             </SelectTrigger>
@@ -143,7 +143,7 @@ export function MemberDirectoryClient({ initialMembers }: MemberDirectoryClientP
         <label
           className="flex items-center gap-2 text-xs font-medium shrink-0"
           style={{
-            fontFamily: "var(--font-source-sans), sans-serif",
+            fontFamily: "var(--font-elms-sans), sans-serif",
             color: "var(--on-surface)",
           }}
         >
@@ -151,7 +151,7 @@ export function MemberDirectoryClient({ initialMembers }: MemberDirectoryClientP
           <Select value={statusFilter} onValueChange={(v) => { setStatusFilter(v ?? "all"); setCurrentPage(1) }}>
             <SelectTrigger
               className="!h-9 !w-[130px] rounded-full border-0 bg-white/60 text-sm"
-              style={{ fontFamily: "var(--font-source-sans), sans-serif" }}
+              style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}
             >
               <SelectValue placeholder="Status: Semua" />
             </SelectTrigger>
@@ -166,7 +166,7 @@ export function MemberDirectoryClient({ initialMembers }: MemberDirectoryClientP
         <span
           className="ml-auto min-w-[170px] text-right text-sm shrink-0"
           style={{
-            fontFamily: "var(--font-source-sans), sans-serif",
+            fontFamily: "var(--font-elms-sans), sans-serif",
             color: "var(--on-surface-variant)",
           }}
         >
@@ -190,7 +190,7 @@ export function MemberDirectoryClient({ initialMembers }: MemberDirectoryClientP
           <p
             className="body-lg mb-1"
             style={{
-              fontFamily: "var(--font-source-sans), sans-serif",
+              fontFamily: "var(--font-elms-sans), sans-serif",
               color: "var(--on-surface-variant)",
             }}
           >

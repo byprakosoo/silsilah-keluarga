@@ -43,7 +43,7 @@ export function AdminSidebar({ onNavigate }: AdminSidebarProps = {}) {
     >
       <div className="p-5">
         <Link href="/" className="flex items-center gap-2">
-          <GitBranch className="h-6 w-6" style={{ color: "var(--secondary-container)" }} />
+          <GitBranch className="h-6 w-6" style={{ color: "var(--sidebar-logo-color)" }} />
           <span
             className="font-serif font-bold text-lg"
             style={{
@@ -67,8 +67,8 @@ export function AdminSidebar({ onNavigate }: AdminSidebarProps = {}) {
               key={item.href}
               variant="ghost"
               className={cn(
-                "w-full justify-start gap-3 text-[var(--inverse-on-surface)] hover:text-[var(--inverse-on-surface)] hover:bg-[var(--primary-container)]/30",
-                active && "bg-[var(--primary-container)]/40 text-[var(--on-primary-container)] hover:bg-[var(--primary-container)]/50"
+                "w-full justify-start gap-3 text-[var(--inverse-on-surface)] hover:text-[var(--inverse-on-surface)] hover:bg-[var(--sidebar-interaction-bg)]/30",
+                active && "bg-[var(--sidebar-interaction-bg)]/40 text-[var(--sidebar-interaction-text)] hover:bg-[var(--sidebar-interaction-bg)]/50"
               )}
               asChild
             >
@@ -86,7 +86,7 @@ export function AdminSidebar({ onNavigate }: AdminSidebarProps = {}) {
       <div className="p-3 space-y-2">
         <Button
           variant="ghost"
-          className="w-full justify-start gap-3 text-[var(--inverse-on-surface)] hover:text-[var(--inverse-on-surface)] hover:bg-[var(--primary-container)]/30"
+          className="w-full justify-start gap-3 text-[var(--inverse-on-surface)] hover:text-[var(--inverse-on-surface)] hover:bg-[var(--sidebar-interaction-bg)]/30"
           asChild
         >
           <Link href="/" onClick={onNavigate}>
@@ -94,12 +94,13 @@ export function AdminSidebar({ onNavigate }: AdminSidebarProps = {}) {
             Kembali ke Situs
           </Link>
         </Button>
-        <div className="flex justify-center py-1">
-          <ThemeToggle />
-        </div>
+        <ThemeToggle
+          showLabel
+          className="text-[var(--inverse-on-surface)] hover:text-[var(--inverse-on-surface)] hover:bg-[var(--sidebar-interaction-bg)]/30"
+        />
         <Button
           variant="ghost"
-          className="w-full justify-start gap-3 text-[var(--inverse-on-surface)] hover:text-red-300 hover:bg-[var(--primary-container)]/30"
+          className="w-full justify-start gap-3 text-[var(--inverse-on-surface)] hover:text-[var(--error)] hover:bg-[var(--sidebar-interaction-bg)]/30"
         >
           <LogOut className="h-4 w-4" />
           Logout

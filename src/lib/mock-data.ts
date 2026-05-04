@@ -270,6 +270,17 @@ export function getMemberWithRelations(memberId: string): MemberWithRelations | 
     parents: mockMembers.filter((m) => parentIds.includes(m.id)),
     spouses: mockMembers.filter((m) => spouseIds.includes(m.id)),
     children: mockMembers.filter((m) => childIds.includes(m.id)),
+    siblings: mockMembers.filter((m) => {
+      if (m.id === memberId) return false
+      return parentIds.some((pid) =>
+        mockRelationships.some(
+          (r) =>
+            r.memberId === m.id &&
+            r.relatedMemberId === pid &&
+            r.relationType === "parent"
+        )
+      )
+    }),
   }
 }
 

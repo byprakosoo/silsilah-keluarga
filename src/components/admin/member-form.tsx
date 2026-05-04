@@ -159,7 +159,7 @@ export function MemberForm({ initialData, isEditing }: MemberFormProps) {
                 )}
               </div>
               <div>
-                <Label className="label-sm" style={{ fontFamily: "var(--font-source-sans), sans-serif", color: "var(--on-surface)" }}>
+                <Label className="label-sm" style={{ fontFamily: "var(--font-elms-sans), sans-serif", color: "var(--on-surface)" }}>
                   Foto Anggota
                 </Label>
                 <p className="text-xs text-[var(--on-surface-variant)] mt-1 mb-2">
@@ -188,13 +188,13 @@ export function MemberForm({ initialData, isEditing }: MemberFormProps) {
 
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="fullName" className="label-sm" style={{ fontFamily: "var(--font-source-sans), sans-serif", color: "var(--on-surface)" }}>
+                <Label htmlFor="fullName" className="label-sm" style={{ fontFamily: "var(--font-elms-sans), sans-serif", color: "var(--on-surface)" }}>
                   Nama Lengkap <span style={{ color: "var(--error)" }}>*</span>
                 </Label>
                 <Input id="fullName" value={formData.fullName} onChange={(e) => handleChange("fullName", e.target.value)} placeholder="Nama lengkap" className={inputClasses} required />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="nickname" className="label-sm" style={{ fontFamily: "var(--font-source-sans), sans-serif", color: "var(--on-surface)" }}>
+                <Label htmlFor="nickname" className="label-sm" style={{ fontFamily: "var(--font-elms-sans), sans-serif", color: "var(--on-surface)" }}>
                   Nama Panggilan
                 </Label>
                 <Input id="nickname" value={formData.nickname} onChange={(e) => handleChange("nickname", e.target.value)} placeholder="Nama panggilan" className={inputClasses} />
@@ -203,7 +203,7 @@ export function MemberForm({ initialData, isEditing }: MemberFormProps) {
 
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="gender" className="label-sm" style={{ fontFamily: "var(--font-source-sans), sans-serif", color: "var(--on-surface)" }}>
+                <Label htmlFor="gender" className="label-sm" style={{ fontFamily: "var(--font-elms-sans), sans-serif", color: "var(--on-surface)" }}>
                   Jenis Kelamin <span style={{ color: "var(--error)" }}>*</span>
                 </Label>
                 <Select value={formData.gender} onValueChange={(value) => handleChange("gender", (value ?? "male") as "male" | "female")}>
@@ -217,7 +217,7 @@ export function MemberForm({ initialData, isEditing }: MemberFormProps) {
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="generation" className="label-sm" style={{ fontFamily: "var(--font-source-sans), sans-serif", color: "var(--on-surface)" }}>
+                <Label htmlFor="generation" className="label-sm" style={{ fontFamily: "var(--font-elms-sans), sans-serif", color: "var(--on-surface)" }}>
                   Generasi ke-
                 </Label>
                 <Input id="generation" type="number" min={1} max={10} value={formData.generation} onChange={(e) => handleChange("generation", parseInt(e.target.value) || 1)} className={inputClasses} />
@@ -225,8 +225,8 @@ export function MemberForm({ initialData, isEditing }: MemberFormProps) {
             </div>
 
             <div className="space-y-2">
-              <Label style={{ fontFamily: "var(--font-source-sans), sans-serif", color: "var(--on-surface)" }}>Status Hidup</Label>
-              <div className="flex gap-4" style={{ fontFamily: "var(--font-source-sans), sans-serif" }}>
+              <Label style={{ fontFamily: "var(--font-elms-sans), sans-serif", color: "var(--on-surface)" }}>Status Hidup</Label>
+              <div className="flex gap-4" style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}>
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input type="radio" name="isAlive" checked={formData.isAlive} onChange={() => handleChange("isAlive", true)} style={{ accentColor: "var(--primary)" }} />
                   <span className="text-sm text-[var(--on-surface)]">Hidup</span>
@@ -249,11 +249,11 @@ export function MemberForm({ initialData, isEditing }: MemberFormProps) {
           <CardContent className="space-y-4">
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="birthDate" className="label-sm" style={{ fontFamily: "var(--font-source-sans), sans-serif", color: "var(--on-surface)" }}>Tanggal Lahir</Label>
+                <Label htmlFor="birthDate" className="label-sm" style={{ fontFamily: "var(--font-elms-sans), sans-serif", color: "var(--on-surface)" }}>Tanggal Lahir</Label>
                 <Input id="birthDate" type="date" value={formData.birthDate} onChange={(e) => handleChange("birthDate", e.target.value)} className={inputClasses} />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="birthPlace" className="label-sm" style={{ fontFamily: "var(--font-source-sans), sans-serif", color: "var(--on-surface)" }}>Tempat Lahir</Label>
+                <Label htmlFor="birthPlace" className="label-sm" style={{ fontFamily: "var(--font-elms-sans), sans-serif", color: "var(--on-surface)" }}>Tempat Lahir</Label>
                 <Input id="birthPlace" value={formData.birthPlace} onChange={(e) => handleChange("birthPlace", e.target.value)} placeholder="Kota lahir" className={inputClasses} />
               </div>
             </div>
@@ -261,11 +261,11 @@ export function MemberForm({ initialData, isEditing }: MemberFormProps) {
             {!formData.isAlive && (
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="deathDate" className="label-sm" style={{ fontFamily: "var(--font-source-sans), sans-serif", color: "var(--on-surface)" }}>Tanggal Wafat</Label>
+                  <Label htmlFor="deathDate" className="label-sm" style={{ fontFamily: "var(--font-elms-sans), sans-serif", color: "var(--on-surface)" }}>Tanggal Wafat</Label>
                   <Input id="deathDate" type="date" value={formData.deathDate} onChange={(e) => handleChange("deathDate", e.target.value)} className={inputClasses} />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="deathPlace" className="label-sm" style={{ fontFamily: "var(--font-source-sans), sans-serif", color: "var(--on-surface)" }}>Tempat Wafat</Label>
+                  <Label htmlFor="deathPlace" className="label-sm" style={{ fontFamily: "var(--font-elms-sans), sans-serif", color: "var(--on-surface)" }}>Tempat Wafat</Label>
                   <Input id="deathPlace" value={formData.deathPlace} onChange={(e) => handleChange("deathPlace", e.target.value)} placeholder="Kota wafat" className={inputClasses} />
                 </div>
               </div>
@@ -282,20 +282,20 @@ export function MemberForm({ initialData, isEditing }: MemberFormProps) {
           <CardContent className="space-y-4">
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="religion" className="label-sm" style={{ fontFamily: "var(--font-source-sans), sans-serif", color: "var(--on-surface)" }}>Agama</Label>
+                <Label htmlFor="religion" className="label-sm" style={{ fontFamily: "var(--font-elms-sans), sans-serif", color: "var(--on-surface)" }}>Agama</Label>
                 <Input id="religion" value={formData.religion} onChange={(e) => handleChange("religion", e.target.value)} placeholder="Agama" className={inputClasses} />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="occupation" className="label-sm" style={{ fontFamily: "var(--font-source-sans), sans-serif", color: "var(--on-surface)" }}>Pekerjaan</Label>
+                <Label htmlFor="occupation" className="label-sm" style={{ fontFamily: "var(--font-elms-sans), sans-serif", color: "var(--on-surface)" }}>Pekerjaan</Label>
                 <Input id="occupation" value={formData.occupation} onChange={(e) => handleChange("occupation", e.target.value)} placeholder="Pekerjaan" className={inputClasses} />
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="address" className="label-sm" style={{ fontFamily: "var(--font-source-sans), sans-serif", color: "var(--on-surface)" }}>Alamat</Label>
+              <Label htmlFor="address" className="label-sm" style={{ fontFamily: "var(--font-elms-sans), sans-serif", color: "var(--on-surface)" }}>Alamat</Label>
               <Textarea id="address" value={formData.address} onChange={(e) => handleChange("address", e.target.value)} placeholder="Alamat lengkap..." rows={2} className={`${inputClasses} resize-none`} />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="bio" className="label-sm" style={{ fontFamily: "var(--font-source-sans), sans-serif", color: "var(--on-surface)" }}>Biografi Singkat</Label>
+              <Label htmlFor="bio" className="label-sm" style={{ fontFamily: "var(--font-elms-sans), sans-serif", color: "var(--on-surface)" }}>Biografi Singkat</Label>
               <Textarea id="bio" value={formData.bio} onChange={(e) => handleChange("bio", e.target.value)} placeholder="Tulis biografi singkat..." rows={4} className={`${inputClasses} resize-none`} />
             </div>
           </CardContent>

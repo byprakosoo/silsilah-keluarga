@@ -65,7 +65,7 @@ export function MemberCard({ member }: MemberCardProps) {
           <span
             className="text-xs"
             style={{
-              fontFamily: "var(--font-source-sans), sans-serif",
+              fontFamily: "var(--font-elms-sans), sans-serif",
               color: "var(--on-surface-variant)",
             }}
           >
@@ -76,7 +76,7 @@ export function MemberCard({ member }: MemberCardProps) {
         <p
           className="text-sm text-center line-clamp-2 mb-4"
           style={{
-            fontFamily: "var(--font-source-sans), sans-serif",
+            fontFamily: "var(--font-elms-sans), sans-serif",
             color: "#555555",
           }}
         >

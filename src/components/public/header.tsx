@@ -86,7 +86,7 @@ export function PublicHeader() {
               placeholder="Cari arsip..."
               className="w-48 h-9 pl-9 pr-4 rounded-full text-sm outline-none transition-all focus:w-64"
               style={{
-                fontFamily: "var(--font-source-sans), sans-serif",
+                fontFamily: "var(--font-elms-sans), sans-serif",
                 backgroundColor: "var(--surface-container-low)",
                 color: "var(--on-surface)",
               }}

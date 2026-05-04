@@ -59,10 +59,23 @@ export async function getMemberByIdWithRelations(memberId: string): Promise<Memb
     .from(members)
     .where(and(isNull(members.deletedAt)))
 
+  // Siblings: all members sharing any parent with this member
+  const siblingIds = parentIds.length > 0
+    ? allRels
+        .filter(
+          (r) =>
+            parentIds.includes(r.relatedMemberId) &&
+            r.relationType === "parent" &&
+            r.memberId !== memberId
+        )
+        .map((r) => r.memberId)
+    : []
+
   return {
     ...member,
     parents: parentMembers.filter((m) => parentIds.includes(m.id)),
     spouses: parentMembers.filter((m) => spouseIds.includes(m.id)),
     children: parentMembers.filter((m) => childIds.includes(m.id)),
+    siblings: parentMembers.filter((m) => siblingIds.includes(m.id)),
   }
 }

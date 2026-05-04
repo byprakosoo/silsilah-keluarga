@@ -76,7 +76,7 @@ function FamilyMemberNode({ data }: NodeProps<{ member: Member }>) {
           >
             {member.fullName}
           </p>
-          <p className="text-[10px] sm:text-xs mt-0.5 truncate" style={{ fontFamily: "var(--font-source-sans), sans-serif", color: "var(--on-surface-variant)" }}>
+          <p className="text-[10px] sm:text-xs mt-0.5 truncate" style={{ fontFamily: "var(--font-elms-sans), sans-serif", color: "var(--on-surface-variant)" }}>
             {member.gender === "male" ? "♂" : "♀"} {getYearSpan(member)}
           </p>
         </div>

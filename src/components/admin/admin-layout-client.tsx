@@ -29,12 +29,12 @@ export function AdminLayoutClient({ children }: { children: React.ReactNode }) {
 
       <main className="flex-1 overflow-auto">
         {/* Mobile top bar */}
-        <div className="flex items-center gap-2 p-3 md:hidden border-b border-[var(--ledger-line)] bg-[var(--surface-container-lowest)]">
-          <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(true)}>
+        <div className="flex items-center gap-2 p-3 md:hidden border-b border-[var(--outline-variant)] bg-[var(--surface-container-lowest)]">
+          <Button variant="ghost" size="icon" className="text-[var(--on-surface)]" onClick={() => setSidebarOpen(true)}>
             <Menu className="h-5 w-5" />
           </Button>
           <span
-            className="font-serif font-bold text-sm"
+            className="font-serif font-bold text-sm text-[var(--on-surface)]"
             style={{ fontFamily: "var(--font-noto-serif), serif" }}
           >
             Admin Panel

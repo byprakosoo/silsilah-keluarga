@@ -37,7 +37,7 @@ export default async function MemberListPage() {
           >
             Daftar Anggota
           </h1>
-          <p className="body-md text-[var(--on-surface-variant)] mt-1" style={{ fontFamily: "var(--font-source-sans), sans-serif" }}>
+          <p className="body-md text-[var(--on-surface-variant)] mt-1" style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}>
             Kelola data anggota keluarga
           </p>
         </div>
@@ -67,7 +67,7 @@ export default async function MemberListPage() {
                   <Link
                     href={`/admin/anggota/${member.id}/edit`}
                     className="hover:text-[var(--primary)] transition-colors"
-                    style={{ fontFamily: "var(--font-source-sans), sans-serif" }}
+                    style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}
                   >
                     {member.fullName}
                   </Link>
@@ -77,7 +77,7 @@ export default async function MemberListPage() {
                     </span>
                   )}
                 </TableCell>
-                <TableCell className="text-[var(--on-surface-variant)]" style={{ fontFamily: "var(--font-source-sans), sans-serif" }}>
+                <TableCell className="text-[var(--on-surface-variant)]" style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}>
                   {member.gender === "male" ? "♂ Laki-laki" : "♀ Perempuan"}
                 </TableCell>
                 <TableCell>
@@ -122,7 +122,7 @@ export default async function MemberListPage() {
         </Table>
       </div>
 
-      <p className="text-sm text-[var(--on-surface-variant)] mt-4 text-right" style={{ fontFamily: "var(--font-source-sans), sans-serif" }}>
+      <p className="text-sm text-[var(--on-surface-variant)] mt-4 text-right" style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}>
         Total: {members.length} anggota
       </p>
     </div>

@@ -60,7 +60,7 @@ export function Pagination({ currentPage, totalPages, onPageChange }: Pagination
             key={`ellipsis-${i}`}
             className="w-9 text-center text-sm"
             style={{
-              fontFamily: "var(--font-source-sans), sans-serif",
+              fontFamily: "var(--font-elms-sans), sans-serif",
               color: "var(--on-surface-variant)",
             }}
           >
@@ -73,7 +73,7 @@ export function Pagination({ currentPage, totalPages, onPageChange }: Pagination
             size="icon"
             className="h-9 w-9 rounded-full text-sm"
             style={{
-              fontFamily: "var(--font-source-sans), sans-serif",
+              fontFamily: "var(--font-elms-sans), sans-serif",
               backgroundColor:
                 page === currentPage ? "var(--gold-accent)" : "transparent",
               color: page === currentPage ? "#ffffff" : "var(--gold-accent)",

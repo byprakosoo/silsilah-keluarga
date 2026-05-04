@@ -94,7 +94,7 @@ export function RelationsManager({ member }: RelationsManagerProps) {
           <RelationPicker label="Pasangan" memberId={spouseId} selected={spouse} members={selectable.filter((m) => m.gender !== member.gender)} onSelect={setSpouseId} onClear={() => setSpouseId(null)} />
           {spouseId && (
             <div className="mt-3 space-y-2">
-              <Label className="label-sm" style={{ fontFamily: "var(--font-source-sans), sans-serif", color: "var(--on-surface)" }}>Tanggal Pernikahan</Label>
+              <Label className="label-sm" style={{ fontFamily: "var(--font-elms-sans), sans-serif", color: "var(--on-surface)" }}>Tanggal Pernikahan</Label>
               <Input type="date" value={marriageDate} onChange={(e) => setMarriageDate(e.target.value)} className="border-[var(--outline-variant)] bg-[var(--surface)]" />
             </div>
           )}
@@ -108,7 +108,7 @@ export function RelationsManager({ member }: RelationsManagerProps) {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-2" style={{ fontFamily: "var(--font-source-sans), sans-serif" }}>
+          <div className="space-y-2" style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}>
             {member.parents.length > 0 && (
               <div>
                 <span className="text-sm text-[var(--on-surface-variant)]">Orang Tua: </span>
@@ -161,7 +161,7 @@ function RelationPicker({
 
   return (
     <div className="space-y-2">
-      <Label className="label-sm" style={{ fontFamily: "var(--font-source-sans), sans-serif", color: "var(--on-surface)" }}>{label}</Label>
+      <Label className="label-sm" style={{ fontFamily: "var(--font-elms-sans), sans-serif", color: "var(--on-surface)" }}>{label}</Label>
       <div className="flex gap-2">
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger
@@ -174,10 +174,10 @@ function RelationPicker({
                     {selected.fullName.split(" ").map((n) => n[0]).join("").slice(0, 2)}
                   </AvatarFallback>
                 </Avatar>
-                <span style={{ fontFamily: "var(--font-source-sans), sans-serif" }}>{selected.fullName}</span>
+                <span style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}>{selected.fullName}</span>
               </div>
             ) : (
-              <span className="text-[var(--on-surface-variant)]" style={{ fontFamily: "var(--font-source-sans), sans-serif" }}>Pilih {label.toLowerCase()}...</span>
+              <span className="text-[var(--on-surface-variant)]" style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}>Pilih {label.toLowerCase()}...</span>
             )}
             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </PopoverTrigger>
@@ -194,7 +194,7 @@ function RelationPicker({
                           {m.fullName.split(" ").map((n) => n[0]).join("").slice(0, 2)}
                         </AvatarFallback>
                       </Avatar>
-                      <span style={{ fontFamily: "var(--font-source-sans), sans-serif" }}>{m.fullName}</span>
+                      <span style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}>{m.fullName}</span>
                       <Badge variant="outline" className="ml-auto border-[var(--outline-variant)] text-[10px]">Gen {m.generation}</Badge>
                     </CommandItem>
                   ))}

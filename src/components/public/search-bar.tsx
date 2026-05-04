@@ -78,7 +78,7 @@ export function SearchBar({ members, placeholder = "Cari nama anggota..." }: Sea
             <button
               key={member.id}
               className="w-full text-left px-4 py-3 hover:bg-[var(--surface-container-low)] transition-colors border-b border-[var(--outline-variant)] last:border-b-0"
-              style={{ fontFamily: "var(--font-source-sans), sans-serif" }}
+              style={{ fontFamily: "var(--font-elms-sans), sans-serif" }}
               onClick={() => handleSelect(member.slug)}
             >
               <span className="font-medium text-[var(--on-surface)]">{member.fullName}</span>

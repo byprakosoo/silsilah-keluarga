@@ -39,6 +39,7 @@ function buildMemberWithRelations(
     parents,
     spouses: members.filter((m) => spouseIds.includes(m.id)),
     children: members.filter((m) => childIds.includes(m.id)),
+    siblings,
     birthOrder,
     totalSiblings,
   }

@@ -20,10 +20,10 @@ import {
 } from "reactflow"
 import "reactflow/dist/style.css"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Member } from "@/lib/types"
+import { TreeMember, Member } from "@/lib/types"
 import { getYearSpan } from "@/lib/tree-utils"
 
-function FamilyMemberNode({ data }: NodeProps<{ member: Member }>) {
+function FamilyMemberNode({ data }: NodeProps<{ member: TreeMember }>) {
   const { member } = data
   const initials = member.fullName
     .split(" ")
@@ -149,7 +149,7 @@ export function FamilyTree({ initialNodes, initialEdges, onNodeClick, onNodePosi
 
   const handleNodeClick = useCallback(
     (_event: React.MouseEvent, node: Node) => {
-      const member = node.data?.member as Member | undefined
+      const member = node.data?.member as TreeMember | undefined
       if (member?.slug) {
         onNodeClick(member.slug)
       }
@@ -160,7 +160,7 @@ export function FamilyTree({ initialNodes, initialEdges, onNodeClick, onNodePosi
   const handleNodeDragStop = useCallback(
     (_event: React.MouseEvent, node: Node) => {
       if (!onNodePositionChange) return
-      const member = node.data?.member as Member | undefined
+      const member = node.data?.member as TreeMember | undefined
       if (member?.id) {
         onNodePositionChange(member.id, node.position.x, node.position.y)
       }

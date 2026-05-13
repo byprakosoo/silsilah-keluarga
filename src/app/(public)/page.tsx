@@ -1,16 +1,13 @@
+import { Suspense } from "react";
 import { FamilyTreeClient } from "@/components/family-tree/family-tree-client";
 import { SearchBar } from "@/components/public/search-bar";
-import { getAllMembers, getSearchItems } from "@/lib/actions/members";
+import { getTreeMembers, getSearchItems } from "@/lib/actions/members";
 import { getRelationships } from "@/lib/actions/relationships";
 
 export const revalidate = 3600;
 
 export default async function HomePage() {
-  const [members, relationships, searchableMembers] = await Promise.all([
-    getAllMembers(),
-    getRelationships(),
-    getSearchItems(),
-  ]);
+  const searchableMembers = await getSearchItems();
 
   return (
     <div className="h-[calc(100dvh-4rem)] flex flex-col">
@@ -40,7 +37,52 @@ export default async function HomePage() {
       </div>
 
       <div className="flex-1 min-h-0 px-2 sm:px-[var(--gutter)] pb-2 sm:pb-6">
-        <FamilyTreeClient members={members} relationships={relationships} />
+        <Suspense fallback={<TreeSkeleton />}>
+          <TreeSection />
+        </Suspense>
+      </div>
+    </div>
+  );
+}
+
+async function TreeSection() {
+  const [members, relationships] = await Promise.all([
+    getTreeMembers(),
+    getRelationships(),
+  ]);
+
+  return <FamilyTreeClient members={members} relationships={relationships} />;
+}
+
+function TreeSkeleton() {
+  return (
+    <div
+      className="w-full h-full rounded-xl sm:rounded-2xl overflow-hidden border animate-pulse"
+      style={{
+        backgroundColor: "var(--parchment)",
+        borderColor: "var(--ledger-line)",
+      }}
+    >
+      <div className="flex items-center justify-center h-full">
+        <div className="text-center space-y-4">
+          <div className="mx-auto w-16 h-16 rounded-full border-2 flex items-center justify-center"
+            style={{ borderColor: "var(--gold-accent)" }}
+          >
+            <div
+              className="w-8 h-8 rounded-full"
+              style={{ backgroundColor: "var(--primary-container)" }}
+            />
+          </div>
+          <p
+            className="text-sm"
+            style={{
+              fontFamily: "var(--font-elms-sans), sans-serif",
+              color: "var(--on-surface-variant)",
+            }}
+          >
+            Menyusun silsilah keluarga…
+          </p>
+        </div>
       </div>
     </div>
   );

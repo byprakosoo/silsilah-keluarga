@@ -301,7 +301,15 @@ export const getSearchItems = unstable_cache(
   { revalidate: 3600, tags: ["members"] },
 );
 
-export async function createMember(data: MemberInput) {
+export async function createMember(
+  data: MemberInput,
+  relations?: {
+    fatherId?: string;
+    motherId?: string;
+    spouseId?: string;
+    marriageDate?: string;
+  },
+) {
   await requireAdmin();
 
   const parsed = memberSchema.parse(data);
@@ -312,29 +320,76 @@ export async function createMember(data: MemberInput) {
 
   const slug = generateSlug(parsed.fullName, birthYear);
 
-  await db.insert(members).values({
-    slug,
-    fullName: parsed.fullName,
-    nickname: parsed.nickname || null,
-    gender: parsed.gender,
-    birthDate: parsed.birthDate || null,
-    birthPlace: parsed.birthPlace || null,
-    deathDate: parsed.deathDate || null,
-    deathPlace: parsed.deathPlace || null,
-    isAlive: parsed.isAlive,
-    religion: parsed.religion || null,
-    occupation: parsed.occupation || null,
-    bio: parsed.bio || null,
-    address: parsed.address || null,
-    generation: parsed.generation,
-    photoUrl: parsed.photoUrl || null,
+  await db.transaction(async (tx) => {
+    const [newMember] = await tx
+      .insert(members)
+      .values({
+        slug,
+        fullName: parsed.fullName,
+        nickname: parsed.nickname || null,
+        gender: parsed.gender,
+        birthDate: parsed.birthDate || null,
+        birthPlace: parsed.birthPlace || null,
+        deathDate: parsed.deathDate || null,
+        deathPlace: parsed.deathPlace || null,
+        isAlive: parsed.isAlive,
+        religion: parsed.religion || null,
+        occupation: parsed.occupation || null,
+        bio: parsed.bio || null,
+        address: parsed.address || null,
+        generation: parsed.generation,
+        photoUrl: parsed.photoUrl || null,
+      })
+      .returning();
+
+    if (relations) {
+      const parentInserts: {
+        memberId: string;
+        relatedMemberId: string;
+        relationType: string;
+      }[] = [];
+      if (relations.fatherId) {
+        parentInserts.push({
+          memberId: newMember.id,
+          relatedMemberId: relations.fatherId,
+          relationType: "parent",
+        });
+      }
+      if (relations.motherId) {
+        parentInserts.push({
+          memberId: newMember.id,
+          relatedMemberId: relations.motherId,
+          relationType: "parent",
+        });
+      }
+      if (parentInserts.length > 0) {
+        await tx.insert(relationships).values(parentInserts);
+      }
+
+      if (relations.spouseId) {
+        await tx.insert(relationships).values([
+          {
+            memberId: newMember.id,
+            relatedMemberId: relations.spouseId,
+            relationType: "spouse",
+            marriageDate: relations.marriageDate || null,
+          },
+          {
+            memberId: relations.spouseId,
+            relatedMemberId: newMember.id,
+            relationType: "spouse",
+            marriageDate: relations.marriageDate || null,
+          },
+        ]);
+      }
+    }
   });
 
   revalidatePath("/");
   revalidatePath("/anggota");
-  revalidatePath("/admin/anggota");
+  revalidatePath("/admin/dashboard");
   revalidateTag("members", "default");
-  redirect("/admin/anggota");
+  redirect("/admin/dashboard");
 }
 export async function updateMember(id: string, data: MemberInput) {
   await requireAdmin();
@@ -372,9 +427,9 @@ export async function updateMember(id: string, data: MemberInput) {
   revalidatePath("/");
   revalidatePath("/anggota");
   revalidatePath(`/anggota/${slug}`);
-  revalidatePath("/admin/anggota");
+  revalidatePath("/admin/dashboard");
   revalidateTag("members", "default");
-  redirect("/admin/anggota");
+  redirect("/admin/dashboard");
 }
 
 export async function deleteMember(id: string) {
@@ -387,7 +442,7 @@ export async function deleteMember(id: string) {
 
   revalidatePath("/");
   revalidatePath("/anggota");
-  revalidatePath("/admin/anggota");
+  revalidatePath("/admin/dashboard");
   revalidateTag("members", "default");
 }
 

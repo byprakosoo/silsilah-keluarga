@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import {
-  Users,
   UserPlus,
   LayoutDashboard,
   LogOut,
@@ -24,7 +23,6 @@ export function AdminSidebar({ onNavigate }: AdminSidebarProps = {}) {
 
   const navItems = [
     { label: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
-    { label: "Daftar Anggota", href: "/admin/anggota", icon: Users },
     { label: "Tambah Anggota", href: "/admin/anggota/baru", icon: UserPlus },
   ]
 

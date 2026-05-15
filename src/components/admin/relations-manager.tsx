@@ -133,7 +133,7 @@ export function RelationsManager({ member }: RelationsManagerProps) {
 
       <div className="flex items-center justify-between">
         <Button variant="ghost" type="button" asChild>
-          <Link href="/admin/anggota" className="gap-2">
+          <Link href="/admin/dashboard" className="gap-2">
             <ArrowLeft className="h-4 w-4" />
             Kembali
           </Link>
@@ -147,12 +147,12 @@ export function RelationsManager({ member }: RelationsManagerProps) {
   )
 }
 
-function RelationPicker({
+export function RelationPicker({
   label, memberId, selected, members, onSelect, onClear,
 }: {
   label: string
   memberId: string | null
-  selected: Member | null
+  selected: { fullName: string; id?: string } | null
   members: { id: string; fullName: string; photoUrl: string | null; generation: number }[]
   onSelect: (id: string) => void
   onClear: () => void

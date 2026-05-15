@@ -108,6 +108,6 @@ export async function setRelations(
 
   revalidatePath("/")
   revalidatePath("/anggota")
-  revalidatePath("/admin/anggota")
+  revalidatePath("/admin/dashboard")
   revalidateTag("members", "default")
 }

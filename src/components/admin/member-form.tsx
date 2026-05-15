@@ -15,24 +15,29 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Save, ArrowLeft, Camera, X, Loader2 } from "lucide-react";
+import { Save, ArrowLeft, Camera, X, Loader2, ChevronDown, ChevronUp, Users } from "lucide-react";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
-import { Member } from "@/lib/types";
+import { Member, TreeMember, Relationship } from "@/lib/types";
 import { createMember, updateMember } from "@/lib/actions/members";
 import { MemberInput } from "@/lib/validations";
 import { compressImageWithSize } from "@/lib/image-compress";
+import { FamilyTreePreview } from "@/components/admin/family-tree-preview";
+import { RelationPicker } from "@/components/admin/relations-manager";
 import Link from "next/link";
 
 interface MemberFormProps {
   initialData?: Member;
   isEditing?: boolean;
+  treeMembers?: TreeMember[];
+  treeRelationships?: Relationship[];
+  allMembers?: Member[];
 }
 
 function emptyToUndef(v: string): string | undefined {
   return v === "" ? undefined : v;
 }
 
-export function MemberForm({ initialData, isEditing }: MemberFormProps) {
+export function MemberForm({ initialData, isEditing, treeMembers, treeRelationships, allMembers }: MemberFormProps) {
   const router = useRouter();
 
   const [formData, setFormData] = useState({
@@ -62,6 +67,13 @@ export function MemberForm({ initialData, isEditing }: MemberFormProps) {
   const [compressing, setCompressing] = useState(false);
   const [compressSize, setCompressSize] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  // Relations state (only used when creating a new member)
+  const [fatherId, setFatherId] = useState<string | null>(null);
+  const [motherId, setMotherId] = useState<string | null>(null);
+  const [spouseId, setSpouseId] = useState<string | null>(null);
+  const [marriageDate, setMarriageDate] = useState<string>("");
+  const [relationsExpanded, setRelationsExpanded] = useState(true);
 
   const handlePhotoSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -129,7 +141,12 @@ export function MemberForm({ initialData, isEditing }: MemberFormProps) {
       if (isEditing && initialData) {
         await updateMember(initialData.id, input);
       } else {
-        await createMember(input);
+        await createMember(input, {
+          fatherId: fatherId || undefined,
+          motherId: motherId || undefined,
+          spouseId: spouseId || undefined,
+          marriageDate: marriageDate || undefined,
+        });
       }
     } catch (err) {
       if (isRedirectError(err)) throw err;
@@ -156,6 +173,14 @@ export function MemberForm({ initialData, isEditing }: MemberFormProps) {
           >
             {error}
           </div>
+        )}
+
+        {/* Family Tree Preview — shown when tree data is provided */}
+        {treeMembers && treeRelationships && (
+          <FamilyTreePreview
+            members={treeMembers}
+            relationships={treeRelationships}
+          />
         )}
 
         <Card className={cardClasses}>
@@ -586,9 +611,121 @@ export function MemberForm({ initialData, isEditing }: MemberFormProps) {
           </CardContent>
         </Card>
 
+        {/* Relations Section — only shown when creating a new member */}
+        {!isEditing && allMembers && allMembers.length > 0 && (
+          <>
+            <Card className={cardClasses}>
+              <CardHeader className="pb-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Users className="h-5 w-5" style={{ color: "var(--gold-accent)" }} />
+                    <CardTitle
+                      className="font-serif text-lg"
+                      style={{
+                        fontFamily: "var(--font-noto-serif), serif",
+                        fontSize: "1.75rem",
+                        color: "var(--on-surface)",
+                      }}
+                    >
+                      Hubungan Keluarga
+                    </CardTitle>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    type="button"
+                    onClick={() => setRelationsExpanded(!relationsExpanded)}
+                    className="h-8 w-8 p-0 text-[var(--on-surface-variant)]"
+                  >
+                    {relationsExpanded ? (
+                      <ChevronUp className="h-4 w-4" />
+                    ) : (
+                      <ChevronDown className="h-4 w-4" />
+                    )}
+                  </Button>
+                </div>
+              </CardHeader>
+              {relationsExpanded && (
+                <CardContent className="space-y-4">
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <RelationPicker
+                      label="Ayah"
+                      memberId={fatherId}
+                      selected={allMembers.find((m) => m.id === fatherId) ?? null}
+                      members={allMembers
+                        .filter((m) => m.gender === "male")
+                        .map((m) => ({
+                          id: m.id,
+                          fullName: m.fullName,
+                          photoUrl: m.photoUrl,
+                          generation: m.generation,
+                        }))}
+                      onSelect={setFatherId}
+                      onClear={() => setFatherId(null)}
+                    />
+                    <RelationPicker
+                      label="Ibu"
+                      memberId={motherId}
+                      selected={allMembers.find((m) => m.id === motherId) ?? null}
+                      members={allMembers
+                        .filter((m) => m.gender === "female")
+                        .map((m) => ({
+                          id: m.id,
+                          fullName: m.fullName,
+                          photoUrl: m.photoUrl,
+                          generation: m.generation,
+                        }))}
+                      onSelect={setMotherId}
+                      onClear={() => setMotherId(null)}
+                    />
+                  </div>
+                  <div className="grid sm:grid-cols-2 gap-4 items-end">
+                    <RelationPicker
+                      label={
+                        formData.gender === "male" ? "Istri" : "Suami"
+                      }
+                      memberId={spouseId}
+                      selected={allMembers.find((m) => m.id === spouseId) ?? null}
+                      members={allMembers
+                        .filter((m) => m.gender !== formData.gender)
+                        .map((m) => ({
+                          id: m.id,
+                          fullName: m.fullName,
+                          photoUrl: m.photoUrl,
+                          generation: m.generation,
+                        }))}
+                      onSelect={setSpouseId}
+                      onClear={() => setSpouseId(null)}
+                    />
+                    {spouseId && (
+                      <div className="space-y-2">
+                        <Label
+                          className="label-sm"
+                          style={{
+                            fontFamily: "var(--font-elms-sans), sans-serif",
+                            color: "var(--on-surface)",
+                          }}
+                        >
+                          Tanggal Pernikahan
+                        </Label>
+                        <Input
+                          type="date"
+                          value={marriageDate}
+                          onChange={(e) => setMarriageDate(e.target.value)}
+                          className={inputClasses}
+                        />
+                      </div>
+                    )}
+                  </div>
+                </CardContent>
+              )}
+            </Card>
+          </>
+        )}
+
         <div className="flex items-center justify-between">
           <Button variant="ghost" type="button" asChild>
-            <Link href="/admin/anggota" className="gap-2">
+            <Link href="/admin/dashboard" className="gap-2">
               <ArrowLeft className="h-4 w-4" />
               Batal
             </Link>

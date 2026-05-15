@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation"
 import { MemberForm } from "@/components/admin/member-form"
-import { getMemberBySlug, getAllMembers } from "@/lib/actions/members"
+import { getMemberBySlug, getAllMembers, getTreeMembers } from "@/lib/actions/members"
+import { getRelationships } from "@/lib/actions/relationships"
 
 interface EditMemberPageProps {
   params: Promise<{ id: string }>
@@ -8,7 +9,11 @@ interface EditMemberPageProps {
 
 export default async function EditMemberPage({ params }: EditMemberPageProps) {
   const { id } = await params
-  const members = await getAllMembers()
+  const [members, treeMembers, relationships] = await Promise.all([
+    getAllMembers(),
+    getTreeMembers(),
+    getRelationships(),
+  ])
   const member = members.find((m) => m.id === id)
 
   if (!member) {
@@ -24,7 +29,12 @@ export default async function EditMemberPage({ params }: EditMemberPageProps) {
         </p>
       </div>
 
-      <MemberForm initialData={member} isEditing />
+      <MemberForm
+        initialData={member}
+        isEditing
+        treeMembers={treeMembers}
+        treeRelationships={relationships}
+      />
     </div>
   )
 }
